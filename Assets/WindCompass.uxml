@@ -1,0 +1,39 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="WindCompass.uss" />
+    <!--
+        Instance is 200x200. The 120x120 compass circle is centred at (40,40)
+        inside it. The wind icon orbits outside the circle within the 200x200 area.
+
+        Layer rotation pivots all occur at the instance centre (100,100),
+        which is also the compass circle centre — so the circles never drift.
+
+          wind-arc-layer  200x200 — rotates to wind direction; circle sprites
+                                    stay centred, wind icon marks where wind
+                                    comes from, and the green arc marks the
+                                    opposite helpful sailing sector.
+          compass-ring    120x120 — rotates opposite to heading (compass card).
+          pointer-layer   120x120 — never rotates; pointer fixed at top.
+    -->
+
+    <!-- Layer 1: arc sprites + orbiting wind icon, all rotate to wind direction -->
+    <ui:VisualElement name="wind-arc-layer" class="arc-layer">
+        <ui:VisualElement name="wind-indicator-blackened" class="compass-fill" />
+        <WindArcElement   name="wind-indicator"           class="compass-fill" />
+        <ui:VisualElement name="wind-arrow-glow"          class="wind-icon-glow" />
+        <ui:VisualElement name="wind-arrow"               class="wind-icon"    />
+    </ui:VisualElement>
+
+    <!-- Layer 2: NESW compass card, rotates opposite to boat heading -->
+    <ui:VisualElement name="compass-ring" class="ring-layer">
+        <ui:Label name="label-n" class="compass-label label-n" text="N" />
+        <ui:Label name="label-e" class="compass-label label-e" text="E" />
+        <ui:Label name="label-s" class="compass-label label-s" text="S" />
+        <ui:Label name="label-w" class="compass-label label-w" text="W" />
+    </ui:VisualElement>
+
+    <!-- Layer 3: heading pointer, fixed, always points up -->
+    <ui:VisualElement name="pointer-layer" class="pointer-layer">
+        <ui:VisualElement name="pointer" class="compass-pointer" />
+    </ui:VisualElement>
+
+</ui:UXML>

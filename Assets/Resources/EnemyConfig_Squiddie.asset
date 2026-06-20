@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96c5d59a72d54a5fb2178ac9806c769b, type: 3}
+  m_Name: EnemyConfig_Squiddie
+  m_EditorClassIdentifier: Assembly-CSharp::NightEnemyConfig
+  movementStyle: 0
+  sprite: {fileID: -7858070981196311402, guid: a520d594ae0814df3b6071273e4ca234, type: 3}
+  spawnWeight: 59.5
+  visualScale: 4.2
+  visualTint: {r: 1, g: 0.95, b: 0.98, a: 1}
+  maxHealth: 20
+  contactDamage: 8
+  contactCooldownSeconds: 0.9
+  aggroRadius: 12
+  loseRadius: 16
+  despawnRadius: 28
+  idleSpeed: 1.2
+  chaseSpeed: 2.15
+  acceleration: 5.75
+  idleDriftResponsiveness: 1.5
+  chaseResponsiveness: 1.8
+  idlePrimaryAmplitude: 1.85
+  idleSecondaryAmplitude: 0.7
+  idleFrequency: 1.2
+  chaseWaveAmplitude: 0.42
+  chaseWaveFrequency: 2.8
+  chaseNoiseAmplitude: 0.16
+  burstStrength: 0.95
+  burstFrequency: 1.35
+  burstDutyCycle: 0.42
+  floatiness: 0.08
+  alertDuration: 0.18
+  alertSpeedMultiplier: 0.78
+  alertResponsiveness: 1.75
+  aggroSurgeDuration: 0.2
+  aggroSurgeSpeedMultiplier: 1.32
+  retreatDuration: 0.36
+  retreatSpeedMultiplier: 0.95
+  retreatResponsiveness: 1.65
+  retreatArcDegrees: 34
+  hitStateDuration: 0.08
+  bodyColliderRadius: 0.28
+  contactTriggerRadius: 0.48
+  boatBounceImpulse: 2.15
+  projectileKnockbackImpulse: 1.35
+  maxVisualTiltDegrees: 9
+  visualTiltVelocityScale: 4
+  damageFlashColor: {r: 1, g: 0.18, b: 0.18, a: 1}
+  damageFlashDuration: 0.11
+  stateCueTintStrength: 0.24
+  alertVisualScaleMultiplier: 1.035
+  aggroVisualScaleMultiplier: 1.07
+  retreatVisualScaleMultiplier: 0.98
+  hitVisualScaleMultiplier: 0.93
+  nightReadabilityBoost: 0.42
+  nightBrightnessFloor: 0.68
+  nightLiftColor: {r: 0.81, g: 0.86, b: 0.96, a: 1}
+  particleNightReadabilityBoost: 0.28
+  contactSplashPrefab: {fileID: 7285249451130722619, guid: 0d9ca7d3c0814a1881c0ec1f8a41f9fe, type: 3}
+  contactBurstPrefab: {fileID: 2866110695968564500, guid: e7bc0a3cdde142f29b0bceb3b4706f91, type: 3}
+  deathEffectPrefab: {fileID: 7285249451130722619, guid: 0d9ca7d3c0814a1881c0ec1f8a41f9fe, type: 3}
+  coinReward: 1
+  cannonballRewardChance: 0.2
+  cannonballRewardTwoWeight: 0.7
+  cannonballRewardThreeWeight: 0.22
+  cannonballRewardFourWeight: 0.08

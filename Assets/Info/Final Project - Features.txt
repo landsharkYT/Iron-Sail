@@ -1,0 +1,49 @@
+﻿The Iron Sail
+Team members: Vincent Huang, Kenneth Angeles
+Log line:
+
+
+Harness the wind, hunt sea monsters, and survive the open ocean. Scavenge islands and upgrade your ship in this 2D sailing adventure to conquer the treacherous final waters and claim the ultimate prize.
+Description:
+
+
+A realistic sailing game venturing from island to island, gathering resources, surviving the open ocean with various sea monsters, upgrading your boat over time until you are able to venture to one last island, a path most treacherous to obtain the treasure! Based on the valheim sailing system with dynamic wind patterns, a boat that moves by the wind with adjustable sails leading to the player cursing the winds which may blow them off course. Cannon, harpoon, and gun gameplay from the boat to repel sea monsters. And a hunger and general resource system to encourage landing occasionally. Islands should be procedurally generated based on rules. Islands should progressively become farther from each other requiring better boats and the player to judge if they can make it or not. Each island may also consist of map markers to inform the player where unexplored locations are. Players can reference a map for where they are going but it’ll start off as incomplete.
+
+
+Major features (needed for final implementation):
+* Basic physics-based boat movement depending on the wind, little natural forward or backwards movement but could reach good speeds depending on how much sail is put out.
+   * The player can turn with A, D, and will have limited forward and backwards movement unless they are sailing in the direction of the wind.
+* Procedurally generated boat turning and sail animations for smoothness
+* Weapons like muskets, cannons with ammunition, with gun ammo and cannonballs.
+   * Basic combat/shooting system implementation done
+* Hunger system that acts as the health bar for the user through the following methods:
+   * Fishing with a finishing minigame
+   * Buying goods on islands (food)
+* Basic player inventory system to be able to store items, with limited inventory slots for boats.
+* Map: Blank but gradually filled out as you go + map upgrades. Press M or a side piece of UI in the top corner.
+* Boat upgrades, boats can increase in size, damage, durability, and weight.
+   * Start with smallest base boat then upgrade up to two times
+* Having basic audio for ship movement when sailing and combat (shooting)
+* Wind schedule system that is randomized day-by-day, similar to Valheim’s wind system.
+* Enemies with pathfinding, most likely some form of cost based optimization such as Uniform Cost, Dijkstra, etc
+* Islands with GUI for: Shopping, repairs, upgrades
+   * Completely dialogue based with widgets/dialogue boxes that act as the shops and other events.
+* Procedurally generated world with tiles for water and land possibly with a voronoi and perlin noise combination (will be decided later).
+* Player inventory system to be able to store items, with limited inventory slots for boats. With an item system with both slot space and weight where players both have maximum slots and maximum weight for what they can carry.
+* Save states that enables the player/user to pick back up where they left off
+   * Three save states
+
+MVP (required features for first implementation):
+* Basic physics-based boat movement depending on the wind, little natural forward or backwards movement but could reach good speeds depending on how much sail is put out.
+   * The player can turn with A, D, and will have limited forward and backwards movement unless they are sailing in the direction of the wind.
+* Procedurally generated boat turning and sail animations for smoothness
+* Weapons like muskets, cannons with ammunition, with gun ammo and cannonballs.
+   * Basic combat/shooting system implementation done
+* Hunger system that acts as the health bar for the user through the following methods:
+   * Fishing (Minigame itself is a COULD have, otherwise will just be a chance based mechanic)
+   * Buying goods on islands (food)
+* Basic player inventory system to be able to store items, with limited inventory slots for boats.
+* Map: Blank but gradually filled out as you go + map upgrades. Press M or a side piece of UI in the top corner.
+* Boat upgrades, boats can increase in size, damage, durability, and weight.
+   * Start with smallest base boat then upgrade up to two times
+* Having basic audio for ship movement when sailing and combat (shooting)

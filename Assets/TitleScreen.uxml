@@ -1,0 +1,156 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="title-screen-root"
+        style="flex-grow: 1; position: relative; background-color: rgb(8, 13, 24);">
+        <ui:Image name="title-screen-background-image"
+            style="position: absolute; left: 0; top: 0; width: 100%; height: 100%;" />
+        <ui:VisualElement name="title-screen-background-scrim"
+            style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(7, 10, 18, 0.42);" />
+        <ui:VisualElement name="title-screen-content"
+            style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; align-items: center; justify-content: center; padding-left: 28px; padding-right: 28px; padding-top: 24px; padding-bottom: 24px;">
+            <ui:VisualElement name="title-screen-main-page"
+                style="width: 420px; max-width: 92%; align-items: center; padding: 28px; background-color: rgba(18, 22, 34, 0.78); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-color: rgb(170, 141, 90); border-right-color: rgb(170, 141, 90); border-bottom-color: rgb(170, 141, 90); border-left-color: rgb(170, 141, 90);">
+                <ui:Label name="title-screen-title" text="THE IRON SAIL"
+                    style="margin-bottom: 22px; color: rgb(245, 233, 202); -unity-font-style: bold; font-size: 42px; -unity-text-align: middle-center;" />
+                <ui:Button name="title-screen-new-game-button" text="New Game"
+                    style="width: 100%; height: 46px; margin-bottom: 10px;" />
+                <ui:Button name="title-screen-load-game-button" text="Load Game"
+                    style="width: 100%; height: 46px; margin-bottom: 10px;" />
+                <ui:Button name="title-screen-controls-button" text="Controls"
+                    style="width: 100%; height: 46px; margin-bottom: 10px;" />
+                <ui:Button name="title-screen-help-button" text="Help"
+                    style="width: 100%; height: 46px; margin-bottom: 10px;" />
+                <ui:Button name="title-screen-settings-button" text="Settings"
+                    style="width: 100%; height: 46px; margin-bottom: 10px;" />
+                <ui:Button name="title-screen-exit-game-button" text="Exit Game"
+                    style="width: 100%; height: 46px; margin-bottom: 14px;" />
+                <ui:Label name="title-screen-main-footer" text="W / S or Up / Down navigate, Enter selects"
+                    style="color: rgb(194, 182, 154); font-size: 12px; -unity-text-align: middle-center;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="title-screen-controls-page"
+                style="display: none; width: 520px; max-width: 94%; align-items: stretch; padding: 28px; background-color: rgba(18, 22, 34, 0.84); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-color: rgb(120, 148, 197); border-right-color: rgb(120, 148, 197); border-bottom-color: rgb(120, 148, 197); border-left-color: rgb(120, 148, 197);">
+                <ui:Label text="Controls"
+                    style="margin-bottom: 16px; color: rgb(245, 244, 221); -unity-font-style: bold; font-size: 28px; -unity-text-align: middle-center;" />
+                <ui:Label text="Sailing"
+                    style="margin-bottom: 6px; color: rgb(245, 244, 221); -unity-font-style: bold; font-size: 16px;" />
+                <ui:Label name="title-screen-controls-sailing-label"
+                    text=""
+                    style="margin-bottom: 12px; white-space: normal; color: rgb(216, 223, 239); font-size: 13px;" />
+                <ui:Label text="Combat"
+                    style="margin-bottom: 6px; color: rgb(245, 244, 221); -unity-font-style: bold; font-size: 16px;" />
+                <ui:Label name="title-screen-controls-combat-label"
+                    text=""
+                    style="margin-bottom: 12px; white-space: normal; color: rgb(216, 223, 239); font-size: 13px;" />
+                <ui:Label text="Menus / Interaction"
+                    style="margin-bottom: 6px; color: rgb(245, 244, 221); -unity-font-style: bold; font-size: 16px;" />
+                <ui:Label name="title-screen-controls-menu-label"
+                    text=""
+                    style="margin-bottom: 12px; white-space: normal; color: rgb(216, 223, 239); font-size: 13px;" />
+                <ui:Label text="Esc closes the current menu first, otherwise it pauses. Q only opens the shop when docked. C only applies during fishing."
+                    style="margin-bottom: 14px; white-space: normal; color: rgb(175, 185, 212); font-size: 12px;" />
+                <ui:Button name="title-screen-controls-back-button" text="Back"
+                    style="height: 42px; margin-bottom: 12px;" />
+                <ui:Label text="Press Esc to go back"
+                    style="color: rgb(175, 185, 212); font-size: 12px; -unity-text-align: middle-center;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="title-screen-help-page"
+                style="display: none; width: 560px; max-width: 94%; align-items: stretch; padding: 28px; background-color: rgba(18, 22, 34, 0.84); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-color: rgb(120, 148, 197); border-right-color: rgb(120, 148, 197); border-bottom-color: rgb(120, 148, 197); border-left-color: rgb(120, 148, 197);">
+                <ui:Label text="Help"
+                    style="margin-bottom: 12px; color: rgb(245, 244, 221); -unity-font-style: bold; font-size: 28px; -unity-text-align: middle-center;" />
+                <ui:Label text="Goal"
+                    style="margin-bottom: 6px; color: rgb(245, 244, 221); -unity-font-style: bold; font-size: 16px;" />
+                <ui:Label text="Find the treasure hidden somewhere across the sea."
+                    style="margin-bottom: 12px; white-space: normal; color: rgb(216, 223, 239); font-size: 13px;" />
+                <ui:Label text="How To Progress"
+                    style="margin-bottom: 6px; color: rgb(245, 244, 221); -unity-font-style: bold; font-size: 16px;" />
+                <ui:Label text="Sail from island to island and visit shops along the way. Dock at shops and use Talk to get the next clue on the route toward the treasure. Follow the marks on your map, keep exploring, and be sure to stock up on food whenever you can."
+                    style="margin-bottom: 12px; white-space: normal; color: rgb(216, 223, 239); font-size: 13px;" />
+                <ui:Label text="Watch Out"
+                    style="margin-bottom: 6px; color: rgb(245, 244, 221); -unity-font-style: bold; font-size: 16px;" />
+                <ui:Label text="The sea is dangerous. Enemies roam the waters, and rough collisions can sink your boat. If your hunger reaches zero, you starve. If your boat's health reaches zero, you sink. Reach the treasure first to win."
+                    style="margin-bottom: 14px; white-space: normal; color: rgb(216, 223, 239); font-size: 13px;" />
+                <ui:Button name="title-screen-help-back-button" text="Back"
+                    style="height: 42px; margin-bottom: 12px;" />
+                <ui:Label text="Press Esc to go back"
+                    style="color: rgb(175, 185, 212); font-size: 12px; -unity-text-align: middle-center;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="title-screen-load-page"
+                style="display: none; width: 560px; max-width: 94%; align-items: stretch; padding: 28px; background-color: rgba(18, 22, 34, 0.84); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-color: rgb(120, 148, 197); border-right-color: rgb(120, 148, 197); border-bottom-color: rgb(120, 148, 197); border-left-color: rgb(120, 148, 197);">
+                <ui:Label text="Load Game"
+                    style="margin-bottom: 10px; color: rgb(245, 244, 221); -unity-font-style: bold; font-size: 28px; -unity-text-align: middle-center;" />
+                <ui:Label text="Select a save slot to load"
+                    style="margin-bottom: 16px; color: rgb(175, 185, 212); font-size: 13px; -unity-text-align: middle-center;" />
+                <ui:VisualElement name="title-screen-load-slot-list"
+                    style="margin-bottom: 14px; align-items: stretch;" />
+                <ui:Button name="title-screen-load-back-button" text="Back"
+                    style="height: 42px; margin-bottom: 12px;" />
+                <ui:Label text="Press Esc to go back"
+                    style="color: rgb(175, 185, 212); font-size: 12px; -unity-text-align: middle-center;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="title-screen-settings-page"
+                style="display: none; width: 560px; max-width: 94%; align-items: stretch; padding: 28px; background-color: rgba(18, 22, 34, 0.84); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-color: rgb(120, 148, 197); border-right-color: rgb(120, 148, 197); border-bottom-color: rgb(120, 148, 197); border-left-color: rgb(120, 148, 197);">
+                <ui:Label text="Settings"
+                    style="margin-bottom: 12px; color: rgb(245, 244, 221); -unity-font-style: bold; font-size: 28px; -unity-text-align: middle-center;" />
+                <ui:VisualElement style="flex-direction: row; margin-bottom: 14px;">
+                    <ui:Button name="title-screen-settings-keybinds-tab-button" text="Keybinds"
+                        style="flex-grow: 1; height: 40px; margin-right: 8px;" />
+                    <ui:Button name="title-screen-settings-audio-tab-button" text="Audio"
+                        style="flex-grow: 1; height: 40px; margin-right: 8px;" />
+                    <ui:Button name="title-screen-settings-worldgen-tab-button" text="Worldgen"
+                        style="flex-grow: 1; height: 40px;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="title-screen-settings-keybinds-content"
+                    style="align-items: stretch; margin-bottom: 14px;">
+                    <ui:Label text="Boat Control Scheme"
+                        style="margin-bottom: 10px; color: rgb(245, 244, 221); -unity-font-style: bold; font-size: 16px;" />
+                    <ui:Button name="title-screen-settings-scheme-wasd-button" text="WASD"
+                        style="height: 42px; margin-bottom: 10px;" />
+                    <ui:Button name="title-screen-settings-scheme-ijkl-button" text="IJKL"
+                        style="height: 42px; margin-bottom: 10px;" />
+                    <ui:Button name="title-screen-settings-scheme-arrows-button" text="Arrow Keys"
+                        style="height: 42px;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="title-screen-settings-audio-content"
+                    style="display: none; align-items: stretch; margin-bottom: 14px;">
+                    <ui:Label text="Master"
+                        style="margin-bottom: 8px; color: rgb(245, 244, 221); -unity-font-style: bold; font-size: 16px;" />
+                    <ui:Slider name="title-screen-settings-master-slider" low-value="0" high-value="100" value="100"
+                        style="margin-bottom: 8px;" />
+                    <ui:Label name="title-screen-settings-master-value-label" text="100%"
+                        style="margin-bottom: 12px; color: rgb(175, 185, 212); font-size: 13px;" />
+                    <ui:Label text="Music"
+                        style="margin-bottom: 8px; color: rgb(245, 244, 221); -unity-font-style: bold; font-size: 16px;" />
+                    <ui:Slider name="title-screen-settings-music-slider" low-value="0" high-value="100" value="100"
+                        style="margin-bottom: 8px;" />
+                    <ui:Label name="title-screen-settings-music-value-label" text="100%"
+                        style="margin-bottom: 12px; color: rgb(175, 185, 212); font-size: 13px;" />
+                    <ui:Label text="Sound Effects"
+                        style="margin-bottom: 8px; color: rgb(245, 244, 221); -unity-font-style: bold; font-size: 16px;" />
+                    <ui:Slider name="title-screen-settings-sfx-slider" low-value="0" high-value="100" value="100"
+                        style="margin-bottom: 8px;" />
+                    <ui:Label name="title-screen-settings-sfx-value-label" text="100%"
+                        style="margin-bottom: 12px; color: rgb(175, 185, 212); font-size: 13px;" />
+                    <ui:Label text="Ambience"
+                        style="margin-bottom: 8px; color: rgb(245, 244, 221); -unity-font-style: bold; font-size: 16px;" />
+                    <ui:Slider name="title-screen-settings-ambience-slider" low-value="0" high-value="100" value="100"
+                        style="margin-bottom: 8px;" />
+                    <ui:Label name="title-screen-settings-ambience-value-label" text="100%"
+                        style="color: rgb(175, 185, 212); font-size: 13px;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="title-screen-settings-worldgen-content"
+                    style="display: none; align-items: stretch; margin-bottom: 14px;">
+                    <ui:Label text="Seed"
+                        style="margin-bottom: 8px; color: rgb(245, 244, 221); -unity-font-style: bold; font-size: 16px;" />
+                    <ui:TextField name="title-screen-settings-seed-field" picking-mode="Position"
+                        style="margin-bottom: 8px; height: 42px;" />
+                    <ui:Label name="title-screen-settings-seed-helper"
+                        text="Leave blank for a random world. Enter a number, or any text — the same text always makes the same world."
+                        style="white-space: normal; color: rgb(175, 185, 212); font-size: 12px;" />
+                </ui:VisualElement>
+                <ui:Button name="title-screen-settings-back-button" text="Back"
+                    style="height: 42px; margin-bottom: 12px;" />
+                <ui:Label text="Press Esc to go back"
+                    style="color: rgb(175, 185, 212); font-size: 12px; -unity-text-align: middle-center;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

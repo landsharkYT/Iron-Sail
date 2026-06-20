@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ui:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ui="UnityEngine.UIElements"
+    xmlns:uie="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd"
+    editor-extension-mode="False">
+    <Style src="HungerBarUI.uss" />
+    <ui:VisualElement name="hunger-bar-root" class="hunger-bar-root">
+        <ui:VisualElement name="hunger-bar-fill-container" class="hunger-bar-fill-container">
+            <ui:VisualElement name="hunger-bar-fill" class="hunger-bar-fill" />
+        </ui:VisualElement>
+        <ui:VisualElement name="hunger-bar-outline" class="hunger-bar-outline" />
+    </ui:VisualElement>
+</ui:UXML>

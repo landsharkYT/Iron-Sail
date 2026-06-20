@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de906aa5421c95266b46db55aed9becf, type: 3}
+  m_Name: MusketBallItem
+  m_EditorClassIdentifier: Assembly-CSharp::ItemDefinition
+  itemId: musket_ball
+  displayName: Musket Ball
+  description: Small shot used by a musket.
+  category: 2
+  iconSprite: {fileID: -1974155359004365919, guid: 6cca693a5dfc859e595ff0bbfd2f8d24, type: 3}
+  ammoDefinition: {fileID: 11400000, guid: 8e7168d423674545a684b19822e275b8, type: 2}
+  weaponDefinition: {fileID: 0}
+  weight: 0.1
+  value: 2
+  stackable: 1
+  maxStackSize: 999

@@ -1,0 +1,79 @@
+# Unity generated folders
+/Library/
+/Temp/
+/Obj/
+/Build/
+/Builds/
+/Data/
+/Logs/
+/UserSettings/
+/MemoryCaptures/
+/TheIronSailV0.1/
+/UIElementsSchema/
+
+# Unity asset store / package generated files
+/Assets/AssetStoreTools/
+/Assets/Plugins/PlasticSCM*/
+/Assets/AddressableAssetsData/*/*.bin*
+/Assets/StreamingAssets/aa.meta
+/Assets/StreamingAssets/aa/
+/Assets/_Recovery/
+/Assets/Sprites/Temp/
+/Assets/GameUI.uxml#*
+
+# Generated IDE / project files
+*.csproj
+*.csproj.lscache
+*.unityproj
+*.sln
+*.slnx
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+
+# IDE folders
+.vs/
+.vscode/
+.idea/
+.gradle/
+
+# Local tooling / retired VCS metadata
+.agents/
+.codex/
+.opencode/
+.plastic/
+.gitdata/
+ignore.conf
+skills-lock.json
+
+# Build outputs / exports
+/ExportedObj/
+*.apk
+*.aab
+*.app
+*.unitypackage
+
+# Private/local files
+*.private
+*.private.meta
+*.private.[0-9]*
+*.private.[0-9]*.meta
+sysinfo.txt
+crashlytics-build.properties
+~UnityDirMonSyncFile~*
+
+# OS files
+.DS_Store*
+Thumbs.db
+Desktop.ini

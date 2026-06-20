@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de906aa5421c95266b46db55aed9becf, type: 3}
+  m_Name: GoldenCodItem
+  m_EditorClassIdentifier: Assembly-CSharp::ItemDefinition
+  itemId: golden_cod
+  displayName: Golden Cod
+  description: A fresh golden cod. Restores a medium amount of hunger when eaten.
+  category: 1
+  iconSprite: {fileID: -7879018577689788943, guid: b0ea5b7d7c41046919bb718411f2ca7a, type: 3}
+  ammoDefinition: {fileID: 0}
+  weaponDefinition: {fileID: 0}
+  foodRestoreAmount: 12
+  utilityItemType: 0
+  isFish: 1
+  weight: 1
+  value: 18
+  stackable: 1
+  maxStackSize: 10

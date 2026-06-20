@@ -1,0 +1,19 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="Minimap.uss" />
+
+    <ui:VisualElement name="minimap-root" class="minimap-root">
+        <ui:VisualElement name="minimap-face-layer" class="minimap-layer">
+            <ui:VisualElement name="minimap-circle-inner" class="minimap-circle-inner" />
+        </ui:VisualElement>
+        <ui:VisualElement name="minimap-mask" class="minimap-mask">
+            <ui:VisualElement name="minimap-image" class="minimap-image" />
+        </ui:VisualElement>
+        <ui:VisualElement name="minimap-frame-layer" class="minimap-layer">
+            <ui:VisualElement name="minimap-frame" class="minimap-frame" />
+        </ui:VisualElement>
+        <ui:VisualElement name="minimap-player-layer" class="minimap-layer">
+            <ui:VisualElement name="minimap-player-shadow" class="minimap-player-shadow" />
+            <ui:VisualElement name="minimap-player" class="minimap-player" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

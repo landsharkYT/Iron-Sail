@@ -1,0 +1,12 @@
+.time-of-day-root {
+    width: 104px;
+    height: 106px;
+    align-items: center;
+    justify-content: center;
+}
+
+.time-of-day-icon {
+    width: 104px;
+    height: 106px;
+    -unity-background-scale-mode: scale-to-fit;
+}

@@ -1,0 +1,148 @@
+/*
+    Panel: 1200x800 reference, width-match → scale = 1080/1200 = 0.9x.
+    Logical panel at 1080x1080 game: 1200x1200 units.
+
+    The instance in GameUI is 200x200 to give room for the orbiting wind icon.
+    The compass circle (120x120) is centred inside that 200x200 area.
+    The wind indicator icon orbits outside the circle at radius 65px from centre.
+
+    Pixel-art scales used:
+      Circle sprites  48x48  → 120x120  (2.5x)
+      Wind icon       28x25  →  56x50   (2x,  orbits outside)
+      Heading pointer 15x20  →  38x50   (2.5x, centred inside circle)
+*/
+
+/*
+    Full-size rotating layer for the wind arc + orbiting icon.
+    Must be 200x200 so the icon can orbit outside the 120px circle.
+    Rotation pivot is element centre (100,100) = compass circle centre.
+*/
+.arc-layer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 200px;
+}
+
+/*
+    Circle sprites (blackened + green arc) sit at the centre of the 200x200
+    arc layer so they don't drift when the layer rotates.
+    left = (200-120)/2 = 40,  top = (200-120)/2 = 40.
+*/
+.compass-fill {
+    position: absolute;
+    left: 40px;
+    top: 40px;
+    width: 120px;
+    height: 120px;
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+/*
+    Black outline behind the wind icon. Same sprite, black tint, 8px larger on
+    each axis so a hard pixel-art outline rings the coloured icon above it.
+    Positioned to stay centred with the icon (4px inset on each side).
+*/
+.wind-icon-glow {
+    position: absolute;
+    width: 64px;
+    height: 58px;
+    left: 68px;
+    top: 136px;
+    rotate: -45deg;
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+/*
+    Wind icon orbits at the BOTTOM of the arc layer (6 o'clock = upwind position).
+    The green arc stays at the top, so the HUD communicates two related ideas:
+      1. The icon shows where the wind comes FROM.
+      2. The opposite green arc shows the headings the wind will help push you toward.
+
+    Orbit radius = 65px from centre (100,100):
+      icon centre Y = 100 + 65 = 165
+      top  = 165 - 25 = 140  (half of icon height 50)
+      left = 100 - 28 = 72   (half of icon width  56)
+
+    rotate: -45deg corrects for the sprite's natural upper-right (45°) facing
+    so the icon points toward the compass centre from any orbit position.
+    If the sprite facing is not exactly 45°, nudge this value in play mode.
+*/
+.wind-icon {
+    position: absolute;
+    width: 56px;
+    height: 50px;
+    left: 72px;
+    top: 140px;
+    rotate: -45deg;
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+/*
+    Compass ring layer: 120x120 centred inside the 200x200 instance.
+    left = 40, top = 40.  Rotates opposite to boat heading.
+*/
+.ring-layer {
+    position: absolute;
+    left: 40px;
+    top: 40px;
+    width: 120px;
+    height: 120px;
+}
+
+/*
+    Heading pointer layer: same position as ring, never rotates.
+*/
+.pointer-layer {
+    position: absolute;
+    left: 40px;
+    top: 40px;
+    width: 120px;
+    height: 120px;
+}
+
+/*
+    Heading pointer sprite: 15x20 at 2.5x = 38x50, centred in 120x120.
+    left = (120-38)/2 = 41,  top = (120-50)/2 = 35.
+*/
+.compass-pointer {
+    position: absolute;
+    width: 38px;
+    height: 50px;
+    left: 41px;
+    top: 35px;
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+/* Shared NESW label style. Circle centre in ring-layer = 60px. */
+.compass-label {
+    position: absolute;
+    font-size: 12px;
+    color: white;
+    -unity-font-style: bold;
+}
+
+/* N at top centre of 120px ring. ~8px wide char → left = 60 - 4 = 56. */
+.label-n {
+    top: 3px;
+    left: 56px;
+}
+
+/* S at bottom centre. */
+.label-s {
+    bottom: 3px;
+    left: 56px;
+}
+
+/* E at right centre. ~14px tall char → top = 60 - 7 = 53. */
+.label-e {
+    right: 3px;
+    top: 53px;
+}
+
+/* W at left centre. */
+.label-w {
+    left: 3px;
+    top: 53px;
+}

@@ -1,0 +1,71 @@
+.minimap-root {
+    position: relative;
+    width: 200px;
+    height: 200px;
+}
+
+.minimap-layer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 200px;
+}
+
+.minimap-mask {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    width: 160px;
+    height: 160px;
+    overflow: hidden;
+    border-top-left-radius: 80px;
+    border-top-right-radius: 80px;
+    border-bottom-left-radius: 80px;
+    border-bottom-right-radius: 80px;
+}
+
+.minimap-circle-inner {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    width: 160px;
+    height: 160px;
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+.minimap-image {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 160px;
+    height: 160px;
+    -unity-background-scale-mode: stretch-to-fill;
+}
+
+.minimap-frame {
+    position: absolute;
+    left: 18px;
+    top: 18px;
+    width: 164px;
+    height: 164px;
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+.minimap-player-shadow {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 12px;
+    height: 22px;
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+.minimap-player {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 12px;
+    height: 22px;
+    -unity-background-scale-mode: scale-to-fit;
+}

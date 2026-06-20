@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3268147333129987257
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7196736560269608223}
+  - component: {fileID: 8294338722746807401}
+  - component: {fileID: 2079163809027282382}
+  - component: {fileID: 7074707470747074707}
+  m_Layer: 0
+  m_Name: WindManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7196736560269608223
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3268147333129987257}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.58458, y: -1.01153, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8294338722746807401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3268147333129987257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92e433931d4e6c7e283ce6ec9a699e30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WindController
+  directionShiftSpeed: 15
+  arrivalThreshold: 2
+  holdTimeMin: 30
+  holdTimeMax: 180
+  speedMin: 0.3
+  speedMax: 1
+  speedPeriodMin: 10
+  speedPeriodMax: 40
+--- !u!114 &2079163809027282382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3268147333129987257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 296ba66d21d08be398a49e81db0777cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WindUIController
+  windController: {fileID: 8294338722746807401}
+  boatTransform: {fileID: 0}
+  uiDocument: {fileID: 0}
+  spriteWindIndicator: {fileID: 7568425060725282584, guid: a6c35b7b543d1a029904c02b09dd9c70, type: 3}
+  spriteWindIndicatorBlackened: {fileID: -413859354835135677, guid: f67e18911e424973286a847e6a2c42ea, type: 3}
+  spriteWindArrow: {fileID: 6960412841484217695, guid: 292f888be4a7dae2fa5b37c85776ac40, type: 3}
+  spritePointer: {fileID: -3225369762842474057, guid: 14ddf77b3a2669420a8a8775333696ef, type: 3}
+--- !u!114 &7074707470747074707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3268147333129987257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1ac30061430a3c06ba14cc4d8f99751, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TimeOfDayUIController
+  uiDocument: {fileID: 0}
+  dayNightController: {fileID: 0}
+  weatherController: {fileID: 0}
+  timeOfDayIconElementName: time-of-day-icon
+  sunriseSprite: {fileID: -3743476740206858260, guid: 1951d5c1a4ba5878784d13a1f0f40838, type: 3}
+  daySprite: {fileID: 21300000, guid: 74fc8a201cb198daf95fab02c0b1e8a7, type: 3}
+  sunsetSprite: {fileID: 349563154094922559, guid: 3733587723910fdd7ab71f941edb888c, type: 3}
+  nightSprite: {fileID: -5144860171913557355, guid: de1381e3cf27aabdb90794c25a855162, type: 3}
+  rainSunriseSprite: {fileID: 7887182542124187620, guid: 26c73385934ed59d298f274fd9651e52, type: 3}
+  rainDaySprite: {fileID: -8621584556395787254, guid: c7d95ede6adaf58fa81cad0257ba7300, type: 3}
+  rainSunsetSprite: {fileID: 5793946181347023067, guid: f2ee2f6e4e2a8b0d9866d63b74b971c9, type: 3}
+  rainNightSprite: {fileID: -4704976977723725791, guid: e6d4b4851247e42f58d2e6c537a611a5, type: 3}

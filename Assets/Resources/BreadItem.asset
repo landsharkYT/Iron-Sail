@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de906aa5421c95266b46db55aed9becf, type: 3}
+  m_Name: BreadItem
+  m_EditorClassIdentifier: Assembly-CSharp::ItemDefinition
+  itemId: bread
+  displayName: Bread
+  description: A cheap loaf of harbor bread. Restores a small amount of hunger.
+  category: 1
+  iconSprite: {fileID: -7705965749838947717, guid: 167d75f388ffe4ff692342d8c7f3f2d3, type: 3}
+  ammoDefinition: {fileID: 0}
+  weaponDefinition: {fileID: 0}
+  foodRestoreAmount: 7
+  utilityItemType: 0
+  weight: 1
+  value: 8
+  stackable: 1
+  maxStackSize: 10

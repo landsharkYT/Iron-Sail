@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de906aa5421c95266b46db55aed9becf, type: 3}
+  m_Name: SampleMusketItem
+  m_EditorClassIdentifier: Assembly-CSharp::ItemDefinition
+  itemId: sample_musket
+  displayName: Sample Musket
+  description: A simple test musket for the gun slot.
+  category: 6
+  iconSprite: {fileID: -3194289484096920682, guid: 78ed94d04a83f414d80d1520f1e70ac9, type: 3}
+  ammoDefinition: {fileID: 0}
+  weaponDefinition: {fileID: 11400000, guid: 2bd8c51302bf450d9e3d3b0c6e9e0c28, type: 2}
+  weight: 2.5
+  value: 18
+  stackable: 0
+  maxStackSize: 1

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ui:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ui="UnityEngine.UIElements"
+    xmlns:uie="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd"
+    editor-extension-mode="False">
+    <Style src="InventoryUI.uss" />
+    <ui:VisualElement name="inventory-overlay" class="inventory-overlay">
+        <ui:VisualElement name="inventory-panel" class="inventory-panel">
+            <ui:VisualElement name="inventory-header" class="inventory-header">
+                <ui:Label text="Ship Inventory" class="inventory-title" />
+                <ui:VisualElement class="inventory-header-row">
+                    <ui:VisualElement class="inventory-summary">
+                        <ui:VisualElement class="inventory-summary-block">
+                            <ui:Label text="Gold" class="inventory-summary-label" />
+                            <ui:Label name="inventory-currency-value" text="0" class="inventory-summary-value" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="inventory-summary-block">
+                            <ui:Label text="Slots" class="inventory-summary-label" />
+                            <ui:Label name="inventory-slot-summary" text="0/0" class="inventory-summary-value" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="inventory-summary-block">
+                            <ui:Label text="Weight" class="inventory-summary-label" />
+                            <ui:Label name="inventory-weight-summary" text="0/0" class="inventory-summary-value" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="inventory-equipment-panel" class="inventory-equipment-panel">
+                        <ui:Label text="Reserved Slots" class="inventory-equipment-title" />
+                        <ui:VisualElement name="inventory-equipment-strip" class="inventory-equipment-strip" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <ui:VisualElement name="inventory-content" class="inventory-content">
+                <ui:VisualElement name="inventory-grid-section" class="inventory-grid-section">
+                    <ui:VisualElement name="inventory-grid" class="inventory-grid" />
+                </ui:VisualElement>
+
+                <ui:VisualElement name="inventory-details-panel" class="inventory-details-panel">
+                    <ui:VisualElement name="inventory-details-icon" class="inventory-details-icon" />
+                    <ui:Label name="inventory-details-name" text="Empty Slot" class="inventory-details-name" />
+                    <ui:Label name="inventory-details-category" class="inventory-details-meta" />
+                    <ui:Label name="inventory-details-quantity" class="inventory-details-meta" />
+                    <ui:Label name="inventory-details-weight" class="inventory-details-meta" />
+                    <ui:Label name="inventory-details-value" class="inventory-details-meta" />
+                    <ui:Label name="inventory-details-description" class="inventory-details-description" />
+                    <ui:Button name="inventory-details-consume-button" text="Eat"
+                        style="display: none; height: 36px; margin-top: 12px;" />
+
+                    <ui:VisualElement name="inventory-sort-panel" class="inventory-sort-panel">
+                        <ui:VisualElement class="inventory-sort-header-row">
+                            <ui:Label text="Sort" class="inventory-sort-title" />
+                            <ui:Button name="inventory-sort-direction-button" text="Desc" class="inventory-sort-direction-button" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="inventory-sort-button-grid" class="inventory-sort-button-grid">
+                            <ui:VisualElement class="inventory-sort-button-row">
+                                <ui:Button name="inventory-sort-default-button" text="Default" class="inventory-sort-button" />
+                                <ui:Button name="inventory-sort-name-button" text="Name" class="inventory-sort-button" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="inventory-sort-button-row">
+                                <ui:Button name="inventory-sort-category-button" text="Category" class="inventory-sort-button" />
+                                <ui:Button name="inventory-sort-weight-button" text="Weight" class="inventory-sort-button" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="inventory-sort-button-row">
+                                <ui:Button name="inventory-sort-value-button" text="Value" class="inventory-sort-button" />
+                                <ui:Button name="inventory-sort-quantity-button" text="Qty" class="inventory-sort-button" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="inventory-split-panel" class="inventory-split-panel">
+            <ui:Label text="Split Stack" class="inventory-split-title" />
+            <ui:Label name="inventory-split-context" class="inventory-split-context" />
+            <ui:Button name="inventory-split-one-button" text="Split 1" class="inventory-split-button" />
+            <ui:Button name="inventory-split-half-button" text="Split Half" class="inventory-split-button" />
+            <ui:VisualElement class="inventory-split-custom-row">
+                <ui:TextField name="inventory-split-custom-field" class="inventory-split-custom-field" />
+                <ui:Button name="inventory-split-custom-button" text="Split" class="inventory-split-button inventory-split-custom-button" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="inventory-drag-ghost" class="inventory-drag-ghost">
+            <ui:VisualElement name="inventory-drag-ghost-icon" class="inventory-drag-ghost-icon" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

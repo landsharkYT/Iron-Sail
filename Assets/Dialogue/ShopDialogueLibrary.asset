@@ -1,0 +1,244 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8164a396a9b636196892f5e18ac8908f, type: 3}
+  m_Name: ShopDialogueLibrary
+  m_EditorClassIdentifier: Assembly-CSharp::ShopDialogueLibrary
+  helpfulIntermediate:
+    category: 0
+    entries:
+    - debugName: Helpful Intermediate - Eastbound Rumor
+      whiteLines:
+      - You're not the first sailor to come asking after that kind of prize.
+      - The cleanest rumor I've heard points {direction} from this dock.
+      - Another merchant out that way keeps better track of passing stories than I do.
+      yellowUpdateLine: I've marked it on your map on a place you can go to get more information on the treasure.
+    - debugName: Helpful Intermediate - Weathered Merchant
+      whiteLines:
+      - Aye, I've heard the rumor.
+      - Not enough to call it truth, but enough to send you on in the right direction.
+      - Keep sailing {direction} and ask again where the waters start feeling less forgiving.
+      yellowUpdateLine: I've marked it on your map on a place you can go to get more information on the treasure.
+    - debugName: Helpful Intermediate - Hard Waters
+      whiteLines:
+      - Talk like that travels oddly over open water.
+      - The next piece of it came to me from a shop farther {direction}, well past the easier routes.
+      - Mind the wind when you go. That stretch has a habit of pushing boats off their line.
+      yellowUpdateLine: I've marked it on your map on a place you can go to get more information on the treasure.
+    - debugName: Helpful Intermediate - Southbound Lead
+      whiteLines:
+      - You're chasing the same whisper most captains eventually give in to.
+      - I don't hold the end of it, but I know who might.
+      - Make for the shop {direction} of here and keep your eyes on the horizon more than your courage.
+      yellowUpdateLine: I've marked it on your map on a place you can go to get more information on the treasure.
+    - debugName: Helpful Intermediate - Quiet Voice
+      whiteLines:
+      - If I were you, I'd stop asking loud and start asking farther out.
+      - The story sharpens {direction} from here.
+      - There's a trader out there who hears more than he sells.
+      yellowUpdateLine: I've marked it on your map on a place you can go to get more information on the treasure.
+    - debugName: Helpful Intermediate - Cautious Pointer
+      whiteLines:
+      - I wouldn't swear to much, but I wouldn't ignore this either.
+      - The best lead I know sits with another merchant {direction} of this island.
+      - Go there before the weather turns and the rumor goes thin again.
+      yellowUpdateLine: I've marked it on your map on a place you can go to get more information on the treasure.
+    - debugName: Helpful Intermediate - Sea Warning
+      whiteLines:
+      - The thing you're after has been pulling sailors outward for a long while now.
+      - The next dock worth asking lies {direction}.
+      - Those waters are rougher than they look, so don't waste daylight getting there.
+      yellowUpdateLine: I've marked it on your map on a place you can go to get more information on the treasure.
+    - debugName: Helpful Intermediate - Keeps Better Ears
+      whiteLines:
+      - I sell supplies, not certainty.
+      - Still, there's a merchant {direction} from here who listens closer than I do.
+      - If anyone can move you another step along, it'll be that one.
+      yellowUpdateLine: I've marked it on your map on a place you can go to get more information on the treasure.
+    - debugName: Helpful Intermediate - Out Beyond Safer Waters
+      whiteLines:
+      - You're past the point where dockside boasting helps you much.
+      - Real leads run {direction} from here, out beyond the safer waters.
+      - Find the next merchant I've marked and press them while the trail is still warm.
+      yellowUpdateLine: I've marked it on your map on a place you can go to get more information on the treasure.
+    - debugName: Helpful Intermediate - Doesn't Overstate
+      whiteLines:
+      - I know better than to promise answers I don't hold.
+      - What I do have is a direction and one more shop to send you toward.
+      - Sail {direction}, and you'll be asking a better source than me.
+      yellowUpdateLine: I've marked it on your map on a place you can go to get more information on the treasure.
+  finalReveal:
+    category: 1
+    entries:
+    - debugName: Final Reveal - Knows the Truth
+      whiteLines:
+      - So the rumor reached you at last.
+      - Then listen close, because this is the part most sailors never hear in time.
+      - The treasure isn't under some counter or buried beside a dock.
+      - It's waiting {direction} from here, on an island beyond the safer routes where the sea goes quiet in the wrong way.
+      yellowUpdateLine: I've marked the treasure on your map.
+    - debugName: Final Reveal - Last Merchant
+      whiteLines:
+      - You've come farther than most.
+      - I was wondering which fool would be stubborn enough to follow that chain all the way to me.
+      - The rumors are real, and I know where they end.
+      - The island lies {direction} from here, and the waters around it are no place for a careless hull.
+      yellowUpdateLine: I've marked the treasure on your map.
+    - debugName: Final Reveal - Dockside Secret
+      whiteLines:
+      - Aye. That's it, then.
+      - No more merchants to chase, no more secondhand leads.
+      - What you want lies {direction} from here, out on its own past the routes merchants trust.
+      - If you're going, go with purpose and with more caution than pride.
+      yellowUpdateLine: I've marked the treasure on your map.
+    - debugName: Final Reveal - Measured Warning
+      whiteLines:
+      - You've reached the end of the merchant trail.
+      - I know where the story turns real, and I know why so few return from it.
+      - The island you're after lies {direction} from here.
+      - Don't make for it half-ready. The last stretch punishes hesitation and foolish confidence alike.
+      yellowUpdateLine: I've marked the treasure on your map.
+    - debugName: Final Reveal - No More Rumors
+      whiteLines:
+      - This is no rumor now.
+      - The treasure is real, and it's waiting {direction} from this dock.
+      - You'll find it on an island set apart from the safer lanes.
+      - If you chase it, treat the water between here and there like an enemy that already knows your name.
+      yellowUpdateLine: I've marked the treasure on your map.
+    - debugName: Final Reveal - Stern Merchant
+      whiteLines:
+      - You've earned the truth, so I'll give it plainly.
+      - The treasure lies {direction} from here.
+      - The island is real, but so is the danger around it.
+      - See to your boat before you go, because the sea won't care how long you spent finding the place.
+      yellowUpdateLine: I've marked the treasure on your map.
+  nonHelpful:
+    category: 2
+    entries:
+    - debugName: Non Helpful - Empty Rumor
+      whiteLines:
+      - I've heard plenty of men boast about fortunes at sea.
+      - Most were drunk, and the rest wanted to sound braver than they were.
+      - I wouldn't send you sailing on what I've got.
+      yellowUpdateLine: 
+    - debugName: Non Helpful - Shrugs It Off
+      whiteLines:
+      - Not this time.
+      - Whatever thread you're pulling on didn't reach me in one piece.
+      - Best try another harbor before the trail goes colder still.
+      yellowUpdateLine: 
+    - debugName: Non Helpful - Thin Information
+      whiteLines:
+      - You're asking the wrong merchant.
+      - Plenty of rumors pass through here, but none I'd trust with your hull.
+      - Keep looking. Someone else may have heard the part that matters.
+      yellowUpdateLine: 
+    - debugName: Non Helpful - Won't Pretend Certainty
+      whiteLines:
+      - I've heard the same stories you've heard.
+      - That's all they are to me, though. Stories.
+      - I won't dress up guesswork and send you into open water with it.
+      yellowUpdateLine: 
+    - debugName: Non Helpful - Wrong Dock
+      whiteLines:
+      - You may be on the right hunt, but this is the wrong dock for it.
+      - Nothing useful settled here with the last batch of travelers.
+      - Ask farther on. The next merchant may know what I don't.
+      yellowUpdateLine: 
+    - debugName: Non Helpful - Hearsay Only
+      whiteLines:
+      - I've caught bits of that rumor in passing.
+      - Not enough to point you true, and not enough to hang a map mark on.
+      - Better you keep asking than sail blind on scraps.
+      yellowUpdateLine: 
+  repeatTalk:
+    category: 3
+    entries:
+    - debugName: Repeat - Already Asked 1
+      whiteLines:
+      - You've already asked me.
+      - I haven't learned anything new since the last time.
+      - You'll need another dock if you want another answer.
+      yellowUpdateLine: 
+    - debugName: Repeat - Already Asked 2
+      whiteLines:
+      - Easy now.
+      - I've already told you what I know.
+      - Worry the next merchant instead of this one.
+      yellowUpdateLine: 
+    - debugName: Repeat - Already Asked 3
+      whiteLines:
+      - Still the same answer.
+      - If you want fresh information, you'll need a fresh merchant.
+      - Mine ran out the first time you asked.
+      yellowUpdateLine: 
+    - debugName: Repeat - Already Asked 4
+      whiteLines:
+      - You came back to the same dock for the same rumor.
+      - I can't give you more than I already have.
+      - The sea may change, but my answer hasn't.
+      yellowUpdateLine: 
+    - debugName: Repeat - Patient Reminder
+      whiteLines:
+      - I've not forgotten your face.
+      - You're asking the same question and getting the same answer.
+      - If you want progress, you'll find it somewhere beyond this counter.
+      yellowUpdateLine: 
+    - debugName: Repeat - Mildly Annoyed
+      whiteLines:
+      - You're wearing grooves in the same question.
+      - I already gave you everything worth giving.
+      - Go spend your time on another merchant instead of this one.
+      yellowUpdateLine: 
+    - debugName: Repeat - Dry Reply
+      whiteLines:
+      - I was under the impression we'd finished this conversation.
+      - My answer hasn't improved with age.
+      - Neither will it if you ask a third time.
+      yellowUpdateLine: 
+    - debugName: Repeat - Dockside Weariness
+      whiteLines:
+      - A harbor won't change because you stare at it longer.
+      - Same with my answer.
+      - I've told you all I can. Sail on and ask someone else.
+      yellowUpdateLine: 
+  postReveal:
+    category: 4
+    entries:
+    - debugName: Post Reveal - Nothing More
+      whiteLines:
+      - I've already pointed you true.
+      - What happens now is between you and the sea.
+      - Best not spend too long talking when you should be sailing.
+      yellowUpdateLine: 
+    - debugName: Post Reveal - Final Warning
+      whiteLines:
+      - The map has all I can give you.
+      - From here on, your hull and your nerve will do the talking.
+      - If you mean to chase it, mean it properly.
+      yellowUpdateLine: 
+    - debugName: Post Reveal - Role Is Over
+      whiteLines:
+      - My part in this is done.
+      - You've got the location now.
+      - Whether you reach it is no longer a matter of talk.
+      yellowUpdateLine: 
+    - debugName: Post Reveal - Go While You Can
+      whiteLines:
+      - You don't need another merchant.
+      - You need wind, supplies, and the sense to leave while you still have daylight.
+      - The answer's on your map. The rest is on you.
+      yellowUpdateLine: 
+  debugHelpfulIntermediateCount: 10
+  debugFinalRevealCount: 6
+  debugNonHelpfulCount: 6
+  debugRepeatTalkCount: 8
+  debugPostRevealCount: 4

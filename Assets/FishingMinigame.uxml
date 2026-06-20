@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ui:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ui="UnityEngine.UIElements"
+    xmlns:uie="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd"
+    editor-extension-mode="False">
+    <ui:VisualElement name="fishing-minigame-overlay"
+        style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: none; align-items: center; justify-content: center; background-color: rgba(0, 0, 0, 0.78);">
+        <ui:VisualElement name="fishing-minigame-panel"
+            style="width: 520px; padding: 22px; background-color: rgb(24, 35, 44); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-color: rgb(115, 176, 208); border-right-color: rgb(115, 176, 208); border-bottom-color: rgb(115, 176, 208); border-left-color: rgb(115, 176, 208); align-items: stretch;">
+            <ui:Label text="Fishing"
+                style="margin-bottom: 10px; color: rgb(239, 245, 248); -unity-font-style: bold; font-size: 24px; -unity-text-align: middle-center;" />
+            <ui:Label name="fishing-minigame-progress-label" text="Catch Progress: 0/6"
+                style="margin-bottom: 4px; color: rgb(219, 231, 235); font-size: 15px; -unity-text-align: middle-center;" />
+            <ui:Label name="fishing-minigame-strikes-label" text="Strikes Left: 3"
+                style="margin-bottom: 18px; color: rgb(238, 202, 128); font-size: 14px; -unity-text-align: middle-center;" />
+            <ui:VisualElement name="fishing-minigame-bar-track"
+                style="position: relative; align-self: center; width: 420px; height: 24px; margin-bottom: 18px;">
+                <ui:VisualElement name="fishing-minigame-bar-background"
+                    style="position: absolute; left: 0; top: 7px; width: 100%; height: 10px; -unity-background-scale-mode: stretch-to-fill;" />
+                <ui:VisualElement name="fishing-minigame-bar-success"
+                    style="position: absolute; left: 0; top: 7px; width: 100%; height: 10px; -unity-background-scale-mode: stretch-to-fill;" />
+                <ui:VisualElement name="fishing-minigame-bar-cursor"
+                    style="position: absolute; left: 0; top: 4px; width: 4px; height: 16px; -unity-background-scale-mode: stretch-to-fill;" />
+            </ui:VisualElement>
+            <ui:Label name="fishing-minigame-instruction-label" text="Press C when the cursor is inside the green zone."
+                style="margin-bottom: 6px; color: rgb(196, 210, 220); font-size: 13px; -unity-text-align: middle-center;" />
+            <ui:Label text="Press C to catch. Esc cancels."
+                style="color: rgb(165, 178, 187); font-size: 12px; -unity-text-align: middle-center;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

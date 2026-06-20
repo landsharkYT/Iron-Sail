@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de906aa5421c95266b46db55aed9becf, type: 3}
+  m_Name: CannonballItem
+  m_EditorClassIdentifier: Assembly-CSharp::ItemDefinition
+  itemId: cannonball
+  displayName: Cannonball
+  description: Solid iron shot used to fire the ship's broadside cannons.
+  category: 2
+  iconSprite: {fileID: -8346945394786130699, guid: a4f58c64b3386c84f94ff9a4d0e21f51, type: 3}
+  ammoDefinition: {fileID: 11400000, guid: 4d47a8fd53f54f1d8bf8c1f06d6a9a1c, type: 2}
+  weight: 0.5
+  value: 4
+  stackable: 1
+  maxStackSize: 40

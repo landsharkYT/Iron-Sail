@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b10f6dd0306674a29b49e88f3761a535, type: 3}
+  m_Name: MusketBallAmmo
+  m_EditorClassIdentifier: Assembly-CSharp::AmmoDefinition
+  damage: 9
+  projectilePrefab: {fileID: 1765441003517531491, guid: 49fb3de2ab4b8edc991d003829595f15, type: 3}
+  projectileSpeed: 18
+  projectileLifetime: 2.4
+  maxRange: 16
+  spawnWaterSplashOnExpire: 0
+  waterSplashPrefab: {fileID: 0}
+  cosmeticArcStrength: 0
