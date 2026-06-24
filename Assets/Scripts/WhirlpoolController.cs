@@ -21,9 +21,13 @@ public class WhirlpoolController : MonoBehaviour
     // Code-created spiral particles matching the wave system's white squares (an
     // untextured Sprites/Default billboard quad), so nothing needs prefab wiring.
     [Header("Visual")]
-    [SerializeField, Min(0f)] float particleRimEmissionRate = 90f;
+    // Higher rate fills the gaps left by the now-tiny squares.
+    [SerializeField, Min(0f)] float particleRimEmissionRate = 240f;
     [SerializeField] Color particleColor = new Color(1f, 1f, 1f, 0.6f);
-    [SerializeField, Min(0.01f)] float particleSize = 0.5f;
+    // Match the wave squares' start size (a constant ~0.08) with a small range for
+    // variety, so the whirlpool foam is indistinguishable from the wave particles.
+    [SerializeField, Min(0.001f)] float particleSizeMin = 0.06f;
+    [SerializeField, Min(0.001f)] float particleSizeMax = 0.1f;
     // Render above the water tilemap (which sits on Default/0) so the foam is
     // visible. Tunable if you want it on a specific water-effects plane.
     [SerializeField] string particleSortingLayerName = "Default";
@@ -85,6 +89,7 @@ public class WhirlpoolController : MonoBehaviour
         if (areaTrigger == null)
             areaTrigger = GetComponent<CircleCollider2D>();
         eyeDamagePerSecond = Mathf.Max(eyeDamagePerSecond, rimDamagePerSecond);
+        particleSizeMax = Mathf.Max(particleSizeMax, particleSizeMin);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -139,7 +144,7 @@ public class WhirlpoolController : MonoBehaviour
         main.simulationSpace = ParticleSystemSimulationSpace.World;
         main.startSpeed = 0f;
         main.startLifetime = 2.2f;
-        main.startSize = particleSize;
+        main.startSize = new ParticleSystem.MinMaxCurve(particleSizeMin, particleSizeMax);
         main.startColor = particleColor;
 
         ParticleSystem.ShapeModule shape = vortexParticles.shape;
