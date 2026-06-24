@@ -16,8 +16,12 @@ public class BoatHitAudio : MonoBehaviour
 
     [Header("Playback")]
     [SerializeField] float retriggerCooldownSeconds = 0.12f;
+    // Whirlpool damage ticks every physics frame; this longer cooldown keeps the
+    // strain sound at a comfortable cadence instead of a machine-gun rattle.
+    [SerializeField] float whirlpoolRetriggerCooldownSeconds = 0.7f;
 
     float nextPlayableTime;
+    float whirlpoolNextPlayableTime;
     AudioClip[] shuffledBoatHitClips;
     int nextShuffledClipIndex;
 
@@ -39,6 +43,7 @@ public class BoatHitAudio : MonoBehaviour
         }
 
         retriggerCooldownSeconds = Mathf.Max(0f, retriggerCooldownSeconds);
+        whirlpoolRetriggerCooldownSeconds = Mathf.Max(0f, whirlpoolRetriggerCooldownSeconds);
     }
 
     void OnEnable()
@@ -64,14 +69,19 @@ public class BoatHitAudio : MonoBehaviour
         if (damageAmount <= 0f || audioSource == null)
             return;
 
-        if (Time.time < nextPlayableTime)
+        bool isWhirlpool = damageSource == BoatDamageSource.Whirlpool;
+        if (Time.time < (isWhirlpool ? whirlpoolNextPlayableTime : nextPlayableTime))
             return;
 
         AudioClip clipToPlay = GetNextBoatHitClip();
         if (clipToPlay == null)
             return;
 
-        nextPlayableTime = Time.time + retriggerCooldownSeconds;
+        if (isWhirlpool)
+            whirlpoolNextPlayableTime = Time.time + whirlpoolRetriggerCooldownSeconds;
+        else
+            nextPlayableTime = Time.time + retriggerCooldownSeconds;
+
         audioSource.PlayOneShot(clipToPlay, GameRuntimeSettings.GetSfxBusVolume());
     }
 

@@ -19623,6 +19623,62 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &959424897
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 959424899}
+  - component: {fileID: 959424898}
+  m_Layer: 0
+  m_Name: WhirlpoolSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &959424898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 959424897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0b260c83371335c1bbe6b7cc43b725f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WhirlpoolSpawner
+  islandGenerationController: {fileID: 1909815829}
+  boatTransform: {fileID: 1513097549}
+  worldCamera: {fileID: 1152507923}
+  whirlpoolRoot: {fileID: 0}
+  mediumPrefab: {fileID: -6688127430679594117, guid: 554b2601af880b9139fdbfdef9bc7019, type: 3}
+  largePrefab: {fileID: 1790626355715190626, guid: 7452791dbe8a7bceebab9116768593a8, type: 3}
+  minStraitGap: 14
+  maxStraitGap: 40
+  baseStraitChance: 1
+  largeWhirlpoolChance: 0.5
+  debugMediumWhirlpoolCount: 0
+  debugLargeWhirlpoolCount: 0
+--- !u!4 &959424899
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 959424897}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.47228, y: -1.05746, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1040979348
 GameObject:
   m_ObjectHideFlags: 0
@@ -19766,6 +19822,7 @@ MonoBehaviour:
   compatibilityPreviewTileStep: 24
   compatibilityTextureSizeLimit: 2048
   revealRadiusWorld: 200
+  revealMaskBlockSize: 64
   revealMovementCadenceWorld: 30
   stationaryRevealRefreshSeconds: 0.35
   pendingRetryBatchSize: 2048
@@ -19966,6 +20023,7 @@ MonoBehaviour:
   repairButtonElementName: shop-menu-repair-button
   sellButtonElementName: shop-menu-sell-button
   talkButtonElementName: shop-menu-talk-button
+  restButtonElementName: shop-menu-rest-button
   leaveButtonElementName: shop-menu-leave-button
   talkContentElementName: shop-menu-talk-content
   talkBodyElementName: shop-menu-talk-body
@@ -25552,6 +25610,8 @@ MonoBehaviour:
   minimumDistanceToDockCells: 4
   respawnCooldownSeconds: 180
   initialPlacementRetryDelaySeconds: 1
+  evictionRadiusWorld: 256
+  evictionSweepIntervalSeconds: 2
   debugSessionSeed: 0
   debugLoadedChunkRect:
     x: 0
@@ -36625,3 +36685,4 @@ SceneRoots:
   - {fileID: 887700002}
   - {fileID: 887700011}
   - {fileID: 887700021}
+  - {fileID: 959424899}

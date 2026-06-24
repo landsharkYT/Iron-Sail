@@ -2,7 +2,7 @@ using System.Runtime.CompilerServices;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RockGenerationController : MonoBehaviour
+public class RockGenerationController : WorldChunkSpawner<RockGenerationController.ChunkRockData>
 {
     enum RockSizeClass
     {
@@ -18,7 +18,9 @@ public class RockGenerationController : MonoBehaviour
         Wrapped
     }
 
-    class ChunkRockData
+    // Public because it is the WorldChunkSpawner<TChunk> payload type for this
+    // spawner (a public base type argument must be at least as accessible).
+    public class ChunkRockData
     {
         public GameObject root;
         public readonly List<GameObject> instances = new List<GameObject>();
@@ -107,7 +109,6 @@ public class RockGenerationController : MonoBehaviour
     [SerializeField] int debugLoadedChunkCount;
     [SerializeField] int debugSpawnedRockCount;
 
-    readonly Dictionary<Vector2Int, ChunkRockData> loadedChunks = new Dictionary<Vector2Int, ChunkRockData>();
     readonly Dictionary<GameObject, float> prefabFootprintRadiusCache = new Dictionary<GameObject, float>();
     readonly HashSet<int> warnedMissingColliderPrefabs = new HashSet<int>();
     readonly HashSet<int> warnedMissingObstaclePrefabs = new HashSet<int>();
@@ -117,23 +118,18 @@ public class RockGenerationController : MonoBehaviour
     Vector2 spawnProtectionCenter;
     int rockCountSeedOffset = 4701;
 
-    void Start()
+    protected override bool PrepareReferences()
     {
+        if (referencesValid)
+            return true;
+
         EnsureDefaults();
-        referencesValid = ValidateReferences();
-        if (!referencesValid)
-            return;
+        if (!ValidateReferences())
+            return false;
 
+        referencesValid = true;
         spawnProtectionCenter = boatTransform != null ? (Vector2)boatTransform.position : Vector2.zero;
-        RefreshVisibleChunks();
-    }
-
-    void LateUpdate()
-    {
-        if (!referencesValid)
-            return;
-
-        RefreshVisibleChunks();
+        return true;
     }
 
     void EnsureDefaults()
@@ -178,7 +174,7 @@ public class RockGenerationController : MonoBehaviour
         return true;
     }
 
-    void RefreshVisibleChunks()
+    protected override void CollectRequiredChunks(HashSet<Vector2Int> into)
     {
         Camera cameraToUse = ResolveCamera();
         if (cameraToUse == null)
@@ -186,21 +182,11 @@ public class RockGenerationController : MonoBehaviour
 
         RectInt requiredChunkRect = islandGenerationController.GetRequiredChunkRectForCamera(cameraToUse);
         debugRequiredChunkRect = requiredChunkRect;
+        AddRectChunks(requiredChunkRect, into);
+    }
 
-        UnloadDistantChunks(requiredChunkRect);
-
-        for (int y = requiredChunkRect.yMin; y < requiredChunkRect.yMax; y++)
-        {
-            for (int x = requiredChunkRect.xMin; x < requiredChunkRect.xMax; x++)
-            {
-                Vector2Int chunkCoord = new Vector2Int(x, y);
-                if (loadedChunks.ContainsKey(chunkCoord))
-                    continue;
-
-                GenerateChunk(chunkCoord);
-            }
-        }
-
+    protected override void TickLoadedChunks()
+    {
         UpdateDebugCounts();
     }
 
@@ -212,31 +198,13 @@ public class RockGenerationController : MonoBehaviour
         return islandGenerationController != null ? islandGenerationController.GetWorldCamera() : Camera.main;
     }
 
-    void UnloadDistantChunks(RectInt requiredChunkRect)
+    protected override void UnloadChunk(Vector2Int chunkCoord, ChunkRockData chunkData)
     {
-        List<Vector2Int> chunksToUnload = new List<Vector2Int>();
-        foreach (KeyValuePair<Vector2Int, ChunkRockData> pair in loadedChunks)
-        {
-            if (!requiredChunkRect.Contains(pair.Key))
-                chunksToUnload.Add(pair.Key);
-        }
-
-        for (int i = 0; i < chunksToUnload.Count; i++)
-            UnloadChunk(chunksToUnload[i]);
-    }
-
-    void UnloadChunk(Vector2Int chunkCoord)
-    {
-        if (!loadedChunks.TryGetValue(chunkCoord, out ChunkRockData chunkData))
-            return;
-
-        if (chunkData.root != null)
+        if (chunkData != null && chunkData.root != null)
             Destroy(chunkData.root);
-
-        loadedChunks.Remove(chunkCoord);
     }
 
-    void GenerateChunk(Vector2Int chunkCoord)
+    protected override ChunkRockData GenerateChunk(Vector2Int chunkCoord)
     {
         RectInt chunkRect = islandGenerationController.GetChunkRectForCoord(chunkCoord);
         islandGenerationController.CollectIslandSourcesForChunk(chunkRect, chunkIslandSources);
@@ -251,7 +219,7 @@ public class RockGenerationController : MonoBehaviour
             GenerateRocksForIsland(source, chunkCoord, chunkData);
         }
 
-        loadedChunks.Add(chunkCoord, chunkData);
+        return chunkData;
     }
 
     void GenerateRocksForIsland(IslandGenerationController.IslandSourceDescriptor island, Vector2Int chunkCoord, ChunkRockData chunkData)
@@ -868,10 +836,10 @@ public class RockGenerationController : MonoBehaviour
 
     void UpdateDebugCounts()
     {
-        debugLoadedChunkCount = loadedChunks.Count;
+        debugLoadedChunkCount = LoadedChunkCount;
 
         int spawnedCount = 0;
-        foreach (KeyValuePair<Vector2Int, ChunkRockData> pair in loadedChunks)
+        foreach (KeyValuePair<Vector2Int, ChunkRockData> pair in LoadedChunks)
             spawnedCount += pair.Value.instances.Count;
 
         debugSpawnedRockCount = spawnedCount;

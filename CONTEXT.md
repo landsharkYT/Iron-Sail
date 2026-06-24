@@ -40,6 +40,10 @@ _Avoid_: Per-system seeds, fishing session seed
 A runtime actor whose existence and state depend on the player's path through a session, not on the World Seed — currently Night Enemies. Live Entities are persisted individually in a save, never reproduced from the World Seed.
 _Avoid_: Seeded enemies, reproducible encounters
 
+**Whirlpool**:
+A circular sea hazard that drags the boat toward its centre in a vortex and harms it over time while inside. Escape is emergent from the boat's own wind power — only near-full thrust beats the pull, so it is possible only roughly downwind, and weak or adverse wind can make a Whirlpool lethal. Exists in Medium and Large sizes.
+_Avoid_: Maelstrom-only, instant-kill trap, collidable obstacle
+
 **Save File**:
 An exportable JSON snapshot of a single session that, on load, restores it faithfully — the World Seed (to reproduce world features), the boat's position and heading, mutable player progress, Calendar Day, Playtime, and every Live Entity. "Almost dead" must reload as almost dead.
 _Avoid_: Checkpoint, seed-only save, autosave-only

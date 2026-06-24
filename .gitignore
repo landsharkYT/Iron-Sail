@@ -77,3 +77,7 @@ crashlytics-build.properties
 .DS_Store*
 Thumbs.db
 Desktop.ini
+
+# Placeholder music OSTs — large, not for the repo (replace before release)
+/Assets/Audio/Music/
+/Assets/Audio/Music.meta

@@ -66,6 +66,12 @@ public class FishingSpotSpawner : MonoBehaviour
     [Header("Lifecycle")]
     [SerializeField][Min(1f)] float respawnCooldownSeconds = 10f;
     [SerializeField][Min(0.1f)] float initialPlacementRetryDelaySeconds = 1f;
+    // Unloaded chunks farther than this from the boat are dropped from the retained
+    // set to bound memory. Must stay well outside the loaded region so a short
+    // back-and-forth keeps depletion state. Far enough that a round-trip exceeds the
+    // respawn cooldown, so dropping depletion state is never an exploit.
+    [SerializeField][Min(32f)] float evictionRadiusWorld = 256f;
+    [SerializeField][Min(0.25f)] float evictionSweepIntervalSeconds = 2f;
 
     [Header("Runtime Debug (Play Mode Only)")]
     [SerializeField] int debugSessionSeed;
@@ -79,6 +85,16 @@ public class FishingSpotSpawner : MonoBehaviour
     readonly Dictionary<Vector2Int, ChunkState> chunkStates = new Dictionary<Vector2Int, ChunkState>();
     readonly HashSet<Vector2Int> loadedChunkCoords = new HashSet<Vector2Int>();
     readonly Dictionary<FishingSpotController, SpotState> spotStateByInstance = new Dictionary<FishingSpotController, SpotState>();
+    // Reused each RefreshLoadedChunks to avoid per-frame allocations.
+    readonly HashSet<Vector2Int> requiredChunksScratch = new HashSet<Vector2Int>();
+    readonly List<Vector2Int> chunksToUnloadScratch = new List<Vector2Int>();
+    readonly List<Vector2Int> evictionScratch = new List<Vector2Int>();
+    float nextEvictionSweepTime;
+
+    // Diagnostic seam: loaded chunks are active (instances spawned); retained
+    // chunks keep their state across unload so respawn timers survive a revisit.
+    public int LoadedChunkCount => loadedChunkCoords.Count;
+    public int RetainedChunkCount => chunkStates.Count;
 
     bool referencesValid;
     IslandGenerationController islandGenerationController;
@@ -116,6 +132,7 @@ public class FishingSpotSpawner : MonoBehaviour
         RefreshLoadedChunks();
         RevalidateActiveSpots();
         UpdateChunkRespawns();
+        EvictDistantRetainedChunks();
         UpdateDebugCounters();
     }
 
@@ -227,28 +244,28 @@ public class FishingSpotSpawner : MonoBehaviour
         RectInt requiredRect = GetRequiredChunkRect();
         debugLoadedChunkRect = requiredRect;
 
-        HashSet<Vector2Int> requiredChunks = new HashSet<Vector2Int>();
+        requiredChunksScratch.Clear();
         for (int y = requiredRect.yMin; y < requiredRect.yMax; y++)
         {
             for (int x = requiredRect.xMin; x < requiredRect.xMax; x++)
             {
                 Vector2Int chunkCoord = new Vector2Int(x, y);
-                requiredChunks.Add(chunkCoord);
+                requiredChunksScratch.Add(chunkCoord);
 
                 if (!loadedChunkCoords.Contains(chunkCoord))
                     LoadChunk(chunkCoord);
             }
         }
 
-        List<Vector2Int> chunksToUnload = new List<Vector2Int>();
+        chunksToUnloadScratch.Clear();
         foreach (Vector2Int loadedChunk in loadedChunkCoords)
         {
-            if (!requiredChunks.Contains(loadedChunk))
-                chunksToUnload.Add(loadedChunk);
+            if (!requiredChunksScratch.Contains(loadedChunk))
+                chunksToUnloadScratch.Add(loadedChunk);
         }
 
-        for (int i = 0; i < chunksToUnload.Count; i++)
-            UnloadChunk(chunksToUnload[i]);
+        for (int i = 0; i < chunksToUnloadScratch.Count; i++)
+            UnloadChunk(chunksToUnloadScratch[i]);
     }
 
     RectInt GetRequiredChunkRect()
@@ -264,12 +281,18 @@ public class FishingSpotSpawner : MonoBehaviour
         Vector2Int minChunk = WorldCellToChunkCoord(minCell);
         Vector2Int maxChunk = WorldCellToChunkCoord(maxCell);
 
-        minChunk.x -= generationMarginChunks;
-        minChunk.y -= generationMarginChunks;
-        maxChunk.x += generationMarginChunks;
-        maxChunk.y += generationMarginChunks;
+        return BuildRequiredChunkRect(minChunk, maxChunk, generationMarginChunks);
+    }
 
-        return new RectInt(minChunk.x, minChunk.y, (maxChunk.x - minChunk.x) + 1, (maxChunk.y - minChunk.y) + 1);
+    // Diagnostic seam: the inclusive chunk span [min,max] expanded by margin on
+    // every side, as a RectInt covering every chunk that must be loaded.
+    public static RectInt BuildRequiredChunkRect(Vector2Int minChunk, Vector2Int maxChunk, int margin)
+    {
+        int xMin = minChunk.x - margin;
+        int yMin = minChunk.y - margin;
+        int xMax = maxChunk.x + margin;
+        int yMax = maxChunk.y + margin;
+        return new RectInt(xMin, yMin, (xMax - xMin) + 1, (yMax - yMin) + 1);
     }
 
     void LoadChunk(Vector2Int chunkCoord)
@@ -325,8 +348,14 @@ public class FishingSpotSpawner : MonoBehaviour
 
     void RevalidateActiveSpots()
     {
-        foreach (ChunkState state in chunkStates.Values)
+        // Only loaded chunks have live spots worth revalidating. Retained-but-
+        // unloaded chunks have no instances, so scanning them every frame was pure
+        // overhead that grew with how much of the world had been explored.
+        foreach (Vector2Int chunkCoord in loadedChunkCoords)
         {
+            if (!chunkStates.TryGetValue(chunkCoord, out ChunkState state))
+                continue;
+
             for (int i = 0; i < state.spots.Count; i++)
             {
                 SpotState spot = state.spots[i];
@@ -347,6 +376,51 @@ public class FishingSpotSpawner : MonoBehaviour
                 spot.respawnReadyTime = Time.time + initialPlacementRetryDelaySeconds;
             }
         }
+    }
+
+    // Throttled sweep: drop retained-but-unloaded chunks the boat has sailed far
+    // from, bounding the retained set to a disc around the player. An evicted chunk
+    // has no live instances (those were destroyed at unload), so its deterministic
+    // layout simply regenerates if revisited; only short-lived depletion state is
+    // forgotten, which is exploit-free at this distance (see ADR 0007).
+    void EvictDistantRetainedChunks()
+    {
+        if (Time.time < nextEvictionSweepTime)
+            return;
+
+        nextEvictionSweepTime = Time.time + Mathf.Max(0.25f, evictionSweepIntervalSeconds);
+        if (boatTransform == null || waterTilemap == null)
+            return;
+
+        Vector2 boatPosition = boatTransform.position;
+        evictionScratch.Clear();
+        foreach (KeyValuePair<Vector2Int, ChunkState> pair in chunkStates)
+        {
+            bool isLoaded = loadedChunkCoords.Contains(pair.Key);
+            if (IsChunkEvictable(boatPosition, ChunkCenterWorld(pair.Key), evictionRadiusWorld, isLoaded))
+                evictionScratch.Add(pair.Key);
+        }
+
+        for (int i = 0; i < evictionScratch.Count; i++)
+            chunkStates.Remove(evictionScratch[i]);
+    }
+
+    // Diagnostic seam: a chunk is evictable when it is not currently loaded and its
+    // centre is beyond the eviction radius from the boat. Loaded chunks are never
+    // evicted regardless of distance.
+    public static bool IsChunkEvictable(Vector2 boatPosition, Vector2 chunkCenterWorld, float evictionRadius, bool isLoaded)
+    {
+        if (isLoaded)
+            return false;
+
+        return (chunkCenterWorld - boatPosition).sqrMagnitude > evictionRadius * evictionRadius;
+    }
+
+    Vector2 ChunkCenterWorld(Vector2Int chunkCoord)
+    {
+        RectInt cellRect = GetChunkCellRect(chunkCoord);
+        Vector3Int centerCell = new Vector3Int(cellRect.xMin + (cellRect.width / 2), cellRect.yMin + (cellRect.height / 2), 0);
+        return waterTilemap.GetCellCenterWorld(centerCell);
     }
 
     ChunkState GetOrCreateChunkState(Vector2Int chunkCoord)

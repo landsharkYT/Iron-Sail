@@ -9,7 +9,8 @@ public enum BoatDamageSource
     EnemyContact = 2,
     Boundary = 3,
     HullWear = 4,
-    Debug = 5
+    Debug = 5,
+    Whirlpool = 6
 }
 
 // Owns the boat's hull health state and exposes the simple APIs other systems use.
