@@ -12,11 +12,12 @@ The Save File must restore the player's discovered map. The naive options all
 fail at this game's scale:
 
 - The world is **~148 million tiles** (`playableRadiusTiles = 6000`, so ~12,200
-  tiles per side). A fixed full-world bitmap is ~150 MB — infeasible.
+  tiles per side). A fixed full-world bitmap is ~150 MB, which is too large for
+  the save.
 - Storing the charted cells (even sparse, compressed pages) works but grows with
   exploration and bloats the save with data that is *derivable*.
 - A fixed low-res raster (the mainstream fog-of-war approach) is O(1) but blurs
-  away per-tile detail — and this map **zooms to per-tile detail** via
+  away per-tile detail. This map **zooms to per-tile detail** via
   `MapDiscoveryController.RenderViewport`, so docks/treasure (1-tile features)
   would be destroyed.
 
@@ -31,7 +32,7 @@ reveal flow funnels through a single replayable method,
 
 ## Decision
 
-Persist only a **coarse discovery mask** — the set of revealed blocks (world
+Persist only a **coarse discovery mask**: the set of revealed blocks (world
 position snapped to a `blockSize` grid, `blockSize <= revealRadiusWorld`). On
 load, **replay** `RevealAtWorldPosition` over the saved blocks; the chart
 repaints from the seed. This is the information-theoretic floor: store the
@@ -56,9 +57,9 @@ This is delivered in phases:
   deterministic `TryGetTreasureTargetCells` once reconstruction fully drains
   (block replay + island stamping both empty), so the island stamp can't overwrite
   them as land. They are stamped only if the player had revealed that block, and
-  only the 1–2 marker cells are affected.
+  only the 1-2 marker cells are affected.
 
-- **Phase 3 (optional, not done):** a seed-keyed cache of the reconstructed
+- **Phase 3 (optional):** a seed-keyed cache of the reconstructed
   preview texture to remove the brief "fills in on load" moment.
 
 Known minor remaining gap: the boundary band still records via the live-tilemap
@@ -75,16 +76,16 @@ on load. Islands, docks, open water, and treasure markers all reconstruct on loa
 - Until Phase 2, a reloaded save shows charted islands/docks/treasure instantly
   but open-water fog repaints as the player revisits.
 - The approach depends on the chart being fully world-derived. If a future
-  feature writes non-seed-deterministic data into the chart, that part would not
-  reconstruct and would need separate persistence.
+  feature writes non-seed-deterministic data into the chart, that part needs
+  separate persistence.
 - Replaying at block centres reveals marginally more at the edges than the exact
-  path — an acceptable fog approximation.
+  path. This is an acceptable fog approximation.
 
 ## Alternatives considered
 
-- **Store charted cells, gzip'd pages (Family A)** — simple, instant restore,
-  faithful regardless of determinism, but a blob that grows with exploration and
-  stores derivable data. Kept as the fallback if reconstruction proves fragile.
-- **Fixed low-res raster (Family D)** — O(1) but destroys per-tile zoom detail
-  (docks/treasure). Rejected for a zoomable map.
-- **Sparse tile list (Family C)** — page-size-independent but bulkier than A.
+- **Store charted cells, gzip'd pages (Family A)**: simple, instant restore,
+  faithful regardless of determinism. The blob grows with exploration and stores
+  derivable data, so it stays as a fallback.
+- **Fixed low-res raster (Family D)**: O(1), but it loses the per-tile zoom
+  detail needed for docks and treasure.
+- **Sparse tile list (Family C)**: page-size-independent, but bulkier than A.

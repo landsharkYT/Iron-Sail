@@ -1,66 +1,31 @@
 # Minimap UI Contract
 
-This document freezes the intended minimap composition before any further code or UI restructuring.
-
-The goal is to stop treating the minimap like a generic circular crop and instead treat it like an authored layered widget, similar in spirit to `WindCompass.uxml`.
-
-## Scope
-
-This contract covers only the HUD minimap widget.
-
-It does not define:
-- the full `M` world map overlay
-- map discovery logic
-- chart labeling or decoration
-- marker systems beyond the player boat icon
+This contract defines the HUD minimap as an authored layered widget. It covers
+the small in-HUD minimap only; the full `M` map overlay, chart labels, and other
+marker systems have their own behavior.
 
 ## Widget Size
 
 - Full minimap widget box: `200 x 200`
 - Coordinate origin: top-left of the widget
-
-All minimap layers must align to this same root box.
+- All minimap layers align to this root box
 
 ## Asset Roles
 
 ### `MapCircle`
 
-Purpose:
-- the unmistakable visible outer frame
-- reads as the border/ring of the minimap
-
-Must not be treated as:
-- optional decoration
-- a hidden underlay
-- a clipping mask
-
-Expected read:
-- clearly visible black border ring around the minimap face
+`MapCircle` is the visible outer frame. It should read as a clear black border
+around the minimap face.
 
 ### `MapCircleInner`
 
-Purpose:
-- the visible inner face the live minimap sits within
-- gives the minimap a distinct authored surface
-
-Must not be treated as:
-- the clipping implementation itself
-- a disposable background that gets fully hidden by the live texture
-
-Expected read:
-- the player should be able to tell there is a face beneath the live map, not just a raw blue disc
+`MapCircleInner` is the authored inner face. It gives the minimap a visible
+surface beneath the live map texture.
 
 ### `BoatMapIndicator`
 
-Purpose:
-- player boat icon
-- centered in the minimap
-- rotates with heading only
-
-Must not:
-- translate around the minimap
-- be used as a generic dot
-- be so large that it reads like a UI decal instead of a map marker
+`BoatMapIndicator` is the player boat icon. It stays centered in the minimap and
+rotates with heading.
 
 ## Layer Order
 
@@ -71,15 +36,10 @@ Back to front:
 3. `minimap-frame-layer`
 4. `minimap-player-layer`
 
-Interpretation:
-- the authored face is visible below the live map
-- the live map is visually contained inside the face
-- the border frame sits above both
-- the boat marker sits above everything
+The live map sits inside the authored face, the frame remains readable above it,
+and the boat marker remains visible on top.
 
 ## Pixel Boxes
-
-These are the fixed authored layout targets for the first proper rebuild.
 
 ### Root
 
@@ -93,8 +53,6 @@ These are the fixed authored layout targets for the first proper rebuild.
   - width: `160`
   - height: `160`
 
-This is the authoritative visible border box.
-
 ### Inner Face
 
 - `MapCircleInner` draw box:
@@ -102,8 +60,6 @@ This is the authoritative visible border box.
   - top: `20`
   - width: `160`
   - height: `160`
-
-This matches the frame footprint and provides the visible circular face.
 
 ### Live Minimap Viewport
 
@@ -113,12 +69,8 @@ This matches the frame footprint and provides the visible circular face.
   - width: `144`
   - height: `144`
 
-This inset is intentional.
-
-Reason:
-- the live map must not visually run all the way to the frame edge
-- the frame has to read as its own border
-- the face must still exist as a visible authored layer around the live content
+The inset keeps the live texture from running into the frame and leaves a visible
+face rim around the map content.
 
 ### Player Marker
 
@@ -128,62 +80,28 @@ Reason:
   - width: `18`
   - height: `34`
 
-Notes:
-- this is centered inside the widget
-- it rotates around its own center
-- it does not move inside the minimap
+If this is too subtle after the final rebuild, test `20 x 38` next.
 
-If this proves too small to read after the final architecture rebuild, the first fallback size to test is:
-- width: `20`
-- height: `38`
+## Behavior
 
-## Behavioral Rules
-
-### Minimap Orientation
-
-- world is north-up
-- minimap texture does not rotate
-- only the boat icon rotates
-
-### Marker Position
-
-- marker is always centered in the minimap root
-- map content scrolls beneath it
-
-### Live Map Content
-
-- local crop of shared discovered-map data
-- clipped to circular viewport bounds
-- rendered as a single dynamic image layer only
-
-## Non-Goals
-
-The minimap is not responsible for:
-- whole-world display
-- panning
-- zooming
-- route hints
-- obstacle markers
-- shops
-- treasure icons
+- The minimap is north-up.
+- The minimap texture stays unrotated.
+- The boat icon rotates with heading.
+- The boat icon stays centered.
+- Map content scrolls beneath the centered icon.
+- The live map is one dynamic image layer clipped to the circular viewport.
 
 ## Acceptance Criteria
 
-The minimap is correct only if all of these are true:
+The minimap is correct when:
 
-1. The outer black border from `MapCircle` is clearly readable as a distinct frame.
-2. The minimap does not read like a plain blue circle pasted into the HUD.
-3. The live map texture sits visibly inset inside the border.
+1. `MapCircle` reads as a distinct outer frame.
+2. The widget reads as a purpose-built minimap, with authored frame and face art.
+3. The live map texture is visibly inset inside the frame.
 4. The boat icon is visible, centered, and rotating.
-5. The boat icon does not drift when the player moves.
-6. The minimap reads like a purpose-built widget, not a generic masked texture.
+5. The boat icon stays fixed while the player moves.
 
-## Implementation Guardrails
+## Change Rule
 
-Until this contract is satisfied:
-
-- do not change the asset semantics
-- do not merge minimap and full-map presentation logic
-- do not switch rendering approaches repeatedly without proving the previous layer model wrong
-
-If a future implementation deviates from these boxes or layer semantics, update this contract first rather than silently improvising in code.
+If implementation needs different boxes, layer order, or asset roles, update this
+contract first and then update the code to match.

@@ -2,7 +2,7 @@ CSS 385
 Kenneth Angeles, Vincent Huang  
 5/4/26
 
-Where we’re at:
+Where we're at:
 
 * Able to move boat and raise sail  
   * Kenneth was able to understand the basics of the Boat/Sail Controller  
@@ -16,10 +16,10 @@ What we plan to do / **Goals by next class**:
   * Make boat turning look good (Vincent)  
     * Add more comments to Boat/SailController (just to get done soon)  
   * Add tiles for the water. Water animations procedurally animated.  
-  * Research procedurally generated (Kenneth) \- explain by next class (Wednesday), implement by end of the week (Monday)  
+  * Research procedural generation (Kenneth). Explain by next class (Wednesday), implement by end of the week (Monday).
     * Cellular automata  
-      * **Two states (still and non-still) \-**  
-        * **Radius, double the length of the player’s (boat) view**  
+      * **Two states: still and non-still**
+        * **Radius, double the length of the player's (boat) view**
         * **Ripples**  
           * **Based on anything moving (boat, mobs, fish, etc.)**  
         * **Waves**  
@@ -85,4 +85,3 @@ Sprites
 * One single treasure chest.  
 * Low  
   * Assembling island sprites (Kenneth)
-

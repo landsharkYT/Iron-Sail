@@ -1,48 +1,71 @@
-The Iron Sail
+# The Iron Sail Game Plan
 
-Log line:
+## Logline
 
-Harness the wind, hunt sea monsters, and survive the open ocean. Scavenge islands and upgrade your ship in this 2D sailing adventure to conquer the treacherous final waters and claim the ultimate prize.
+Harness the wind, hunt sea monsters, and survive the open ocean. Scavenge islands,
+upgrade your ship, and push toward dangerous final waters in search of treasure.
 
- 
+## Concept
 
-A realistic sailing game venturing from island to island, gathering resources, surviving the open ocean with various sea monsters, upgrading your boat over time until you are able to venture to one last island, a path most treacherous to obtain the treasure\! Based on the valheim sailing system with dynamic wind patterns, a boat that moves by the wind with adjustable sails leading to the player cursing the winds which may blow them off course. Cannon, harpoon, and gun gameplay from the boat to repel sea monsters. And a hunger and general resource system to encourage landing occasionally. Islands should be procedurally generated based on rules. Islands should progressively become farther from each other requiring better boats and the player to judge if they can make it or not. Each island may also consist of map markers to inform the player where unexplored locations are. Players can reference a map for where they are going but it’ll start off as incomplete.
+The Iron Sail is a 2D sailing adventure about crossing a procedural ocean in a
+wind-driven boat. The player travels from island to island, gathers resources,
+fights sea monsters, upgrades the ship, and gradually fills in an incomplete map.
 
-Feasibility: Procedural generation should not be too hard. The hardest part would be making the boat gameplay feel good as I am translating a 3D game concept into 2D. I would like some procedural animation as it looks cool as an artstyle and drastically cuts down on time with diagonal movement for the boat. Otherwise island gameplay would simply be text based with maybe some pieces of art but the main focus will be the sailing. If we have time: Fishing minigame,
+The sailing model takes inspiration from Valheim: wind direction matters, sails
+are adjustable, and a poor wind can push the player off course. Combat happens
+from the boat with guns, harpoons, and cannons. Hunger and supplies encourage the
+player to land, trade, fish, and plan routes carefully.
 
-**MUST HAVES:**  
-Physics based boat movement depending on the wind.  
-Some kind of wind schedule system.  
-Enemies with pathfinding  
-Islands with GUI for: Shopping, repairs, upgrades  
-Hunger system  
-Procedurally generated world with tiles for water and island  
-Boat upgrades  
-Particles to simulate water physics  
-Universal currency system across islands  
-Player inventory system to be able to store items  
-GUI system for wind direction similar to Valheim  
-Weapons like musket, cannons  
-Day/Night Cycle: 30 minutes \= 1 day  
-PROCEDULALLY GENERATED BOAT TURNING AND SAILS  
-Map: Blank but gradually filled out as you go \+ map upgrades  
-Save states
+Islands are generated from rules. As the player moves farther from the start,
+islands become more spread out, which makes better boats and supply planning more
+important. Island shops can offer repairs, upgrades, food, and map information.
 
-**SHOULD HAVES:**  
-Limited ammunition: Bullets, cannonballs  
-Wide variety of enemies  
-Rest button to skip night (Set time)  
-Having light system at night (boat upgrade)
+## Feasibility Notes
 
-**COULD HAVES:**  
-Deeply detailed enemies  
-Fishing minigame  
-All items have weights with max weights per boat type.  
-Fully fledged animations that are extremely detailed  
-Boat customization (color through sprite paints)  
-Fish encyclopedia (saving across multiple playthroughs)
+Procedural island generation is manageable compared with the feel of the boat.
+The hardest design task is translating a 3D sailing idea into a satisfying 2D
+control scheme. Procedural boat and sail animation can help the boat look lively
+without requiring full directional sprite sets.
 
-**WON’T HAVE (too amibitious):**  
-Healthbar system  
-Fog zones
+Island interactions can stay text-based at first so the sailing remains the main
+focus. A fishing minigame is useful if time allows.
 
+## Must Have
+
+- Physics-based boat movement driven by wind.
+- Wind schedule.
+- Enemies with pathfinding.
+- Island UI for shopping, repairs, and upgrades.
+- Hunger.
+- Procedural water and island tiles.
+- Boat upgrades.
+- Water particles.
+- Universal currency.
+- Player inventory.
+- Wind direction UI inspired by Valheim.
+- Muskets and cannons.
+- Day/night cycle.
+- Procedural boat turning and sail animation.
+- Gradually revealed map.
+- Save states.
+
+## Should Have
+
+- Limited ammunition for bullets and cannonballs.
+- Wider enemy variety.
+- Rest button to skip night.
+- Night lighting from boat upgrades.
+
+## Could Have
+
+- Detailed enemy variants.
+- Fishing minigame.
+- Item weight limits by boat type.
+- Fully authored detailed animations.
+- Boat color customization.
+- Fish encyclopedia shared across playthroughs.
+
+## Out Of Scope
+
+- Separate health bar system.
+- Fog zones.

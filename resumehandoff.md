@@ -4,7 +4,7 @@
 
 The Iron Sail is a Unity 2D open-world sailing and survival game built around procedural ocean exploration. The player pilots a small boat across a tilemap ocean, manages limited cargo and equipment, discovers islands and docks, trades with shopkeepers, follows treasure-hunt clues, and survives environmental and combat pressure.
 
-The project is best described on a resume as a solo or small-team systems-heavy Unity game project. Its strongest technical story is not just "made a game," but the number of interconnected gameplay systems that have to cooperate in real time: procedural world generation, streaming, inventory, trade UI, map discovery, audio state management, survival meters, boat control, and quest progression.
+The project is best described on a resume as a solo or small-team systems-heavy Unity game project. Its strongest technical story is the number of interconnected systems that cooperate in real time: procedural world generation, streaming, inventory, trade UI, map discovery, audio state management, survival meters, boat control, and quest progression.
 
 ## Core Game Experience
 
@@ -116,7 +116,7 @@ Useful keywords for a resume writer:
 
 ## Suggested Resume Positioning
 
-This project should be positioned as a gameplay systems engineering project, not merely as a visual prototype. The strongest angle is that it demonstrates end-to-end ownership of interconnected systems in a real-time game:
+This project should be positioned as a gameplay systems engineering project. The strongest angle is end-to-end ownership of interconnected systems in a real-time game:
 
 - procedural content
 - player progression

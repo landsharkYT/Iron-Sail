@@ -33,23 +33,23 @@ Inspector-gated keyboard shortcuts used during development to force or advance W
 _Avoid_: Permanent weather controls, player weather controls
 
 **World Seed**:
-The single authoritative seed, owned by island generation, that deterministically reproduces every static world feature — islands, rocks, shops, and fishing spots. Anything reproducible from it is a world feature. At New Game it may be chosen by the player (a number used as-is, or any text mapped to a seed) or left blank for a random world; a loaded game keeps the seed stored in its Save File.
+The single authoritative seed, owned by island generation, that deterministically reproduces every static world feature: islands, rocks, shops, and fishing spots. Anything reproducible from it is a world feature. At New Game it may be chosen by the player (a number used as-is, or any text mapped to a seed) or left blank for a random world; a loaded game keeps the seed stored in its Save File.
 _Avoid_: Per-system seeds, fishing session seed
 
 **Live Entity**:
-A runtime actor whose existence and state depend on the player's path through a session, not on the World Seed — currently Night Enemies. Live Entities are persisted individually in a save, never reproduced from the World Seed.
+A runtime actor whose existence and state depend on the player's path through a session. Night Enemies are the current example. Live Entities are persisted individually in a save rather than reproduced from the World Seed.
 _Avoid_: Seeded enemies, reproducible encounters
 
 **Whirlpool**:
-A circular sea hazard that drags the boat toward its centre in a vortex and harms it over time while inside. Escape is emergent from the boat's own wind power — only near-full thrust beats the pull, so it is possible only roughly downwind, and weak or adverse wind can make a Whirlpool lethal. Exists in Medium and Large sizes.
+A circular sea hazard that drags the boat toward its centre in a vortex and harms it over time while inside. Escape comes from the boat's own wind power: near-full thrust can beat the pull roughly downwind, while weak or adverse wind can make a Whirlpool lethal. Exists in Medium and Large sizes.
 _Avoid_: Maelstrom-only, instant-kill trap, collidable obstacle
 
 **Save File**:
-An exportable JSON snapshot of a single session that, on load, restores it faithfully — the World Seed (to reproduce world features), the boat's position and heading, mutable player progress, Calendar Day, Playtime, and every Live Entity. "Almost dead" must reload as almost dead.
+An exportable JSON snapshot of a single session. On load it restores the World Seed, boat position and heading, mutable player progress, Calendar Day, Playtime, and every Live Entity. A low-health boat reloads at the same low health.
 _Avoid_: Checkpoint, seed-only save, autosave-only
 
 **Playtime**:
-Real-world active gameplay time accumulated by a Save File. Rest-skipped world time, paused time, title-screen time, and menu-idle time do not count.
+Real-world active gameplay time accumulated by a Save File. Rest-skipped world time, paused time, title-screen time, and menu-idle time are excluded.
 _Avoid_: In-game time elapsed, clock time since save creation
 
 **Calendar Day**:
@@ -57,15 +57,15 @@ The player-facing day number shown in save slots and UI. It starts at Day 1 even
 _Avoid_: Day 0, treating elapsed day count as display text
 
 **Save Slot**:
-A labelled destination that holds one Save File. Three slots are player-writable; one reserved slot holds the Autosave and is never a manual save target. The same slot menu serves both loading and choosing a manual save target.
+A labelled destination that holds one Save File. Three slots are player-writable; one reserved slot holds the Autosave. The same slot menu serves both loading and choosing a manual save target.
 _Avoid_: Quicksave, treating the slot and the file as the same thing
 
 **Autosave**:
-A Save File the game writes automatically to its own reserved Save Slot as a safety net, never overwritten by a manual save.
+A Save File the game writes automatically to its own reserved Save Slot as a safety net. Manual saves use the player-writable slots.
 _Avoid_: Quicksave, checkpoint, manual slot
 
 **Met Shopkeeper**:
-A shopkeeper the player has invoked "Talk" with at least once — the interaction that may grant a map marker. Persisted as a set of seed-stable ShopIds; on load the set is restored directly, never by replaying "Talk", so a marker is never re-granted.
+A shopkeeper the player has invoked "Talk" with at least once. That interaction may grant a map marker. The game persists Met Shopkeepers as seed-stable ShopIds and restores the set directly on load, so loading skips the Talk interaction.
 _Avoid_: Visited shop, docked-at shop, reachability-visited shop
 
 **Rest**:

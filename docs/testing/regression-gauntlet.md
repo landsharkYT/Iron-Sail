@@ -1,6 +1,6 @@
 # Regression Gauntlet
 
-The Regression Gauntlet is a small suite of Unity Play Mode smoke tests for high-risk gameplay regressions. It is not a broad unit-test campaign.
+The Regression Gauntlet is a focused suite of Unity Play Mode smoke tests for high-risk gameplay regressions.
 
 ## Location
 
@@ -25,9 +25,9 @@ Keep pass-one tests in the default script assembly until production scripts are 
 ## First Scope
 
 - Map Truth: mapped islands, docks, treasure targets, and markers must correspond to real reachable gameplay objects or valid world locations.
-- Shop UI layout: buy and sell panels must not overlap, fall offscreen, or require scrollbars for normal item descriptions across common and awkward resolutions.
+- Shop UI layout: buy and sell panels stay readable across common and awkward resolutions.
 - Treasure hunt continuity: shopkeeper chains, final treasure reveal, treasure island placement, and chart markers must remain valid.
-- Music exclusivity: gameplay music must not leave unrelated tracks playing together after state transitions.
+- Music exclusivity: gameplay music keeps the correct track active after state transitions.
 
 ## Implemented Scenarios
 
