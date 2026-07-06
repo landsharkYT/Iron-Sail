@@ -8,7 +8,7 @@ using UnityEngine;
 // per-frame TickLoadedChunks hook supports stateful spawners (e.g. fishing
 // respawns) without forcing that complexity on stateless ones (rocks, whirlpools).
 //
-// TChunk is the per-chunk payload — typically a root GameObject, but anything the
+// TChunk is the per-chunk payload, typically a root GameObject, but anything the
 // subclass needs to remember and clean up on unload.
 public abstract class WorldChunkSpawner<TChunk> : MonoBehaviour
 {

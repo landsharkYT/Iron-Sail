@@ -5,9 +5,10 @@ using System;
 // flat and field-based. Each section is owned conceptually by one runtime system;
 // the monolithic root keeps the whole save shape readable in one place.
 //
-// First slice covers the "cheap core" only. Later slices add enemies[], markers[],
-// metShopkeepers[] (and v2 adds the discovered map) as additional sections without
-// breaking this shape — readers tolerate missing sections via header.version.
+// The root holds every section: the cheap core plus enemies[], markers[],
+// metShopkeepers[], and the discovered map. Sections stay independent so the
+// shape can grow without breaking; readers tolerate missing sections via
+// header.version.
 
 [Serializable]
 public sealed class SaveFile
@@ -60,7 +61,7 @@ public sealed class ProgressSaveData
     public int gold;
     public int playtimeSeconds;
     public InventoryItemSaveData[] items;
-    // NOTE: hull wear is intentionally absent — it has no independent state. It
+    // NOTE: hull wear is intentionally absent; it has no independent state. It
     // applies damage straight to health (BoatDamageSource.HullWear), so saved
     // health already encodes it; there is nothing extra to persist.
 }

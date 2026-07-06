@@ -3,11 +3,11 @@ using UnityEngine;
 
 // Drives a CameraTarget transform that the CinemachineCamera follows.
 //
-// Lag              — MoveTowards at a fixed cap so the boat can pull away visibly.
-// Bob              — world-space Y sine wave scaled by speed.
-// Zoom             — orthographic size grows with speed, eases back when slowing.
-// Acceleration pulse — brief extra zoom-out when the boat surges (wind catches sail,
-//                   good heading reached). Decays smoothly via SmoothDamp.
+// Lag:   MoveTowards at a fixed cap so the boat can pull away visibly.
+// Bob:   world-space Y sine wave scaled by speed.
+// Zoom:  orthographic size grows with speed, eases back when slowing.
+// Acceleration pulse: brief extra zoom-out when the boat surges (wind catches sail,
+//        good heading reached). Decays smoothly via SmoothDamp.
 public class CameraController : MonoBehaviour
 {
     // The boat the camera follows.

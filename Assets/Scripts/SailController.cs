@@ -22,7 +22,7 @@ public class SailController : MonoBehaviour
     // How fast (units per second) the sail scale moves toward its target.
     [SerializeField] float animationSpeed = 10f;
 
-    // The stretched walls of the sail outline — its Y scale mirrors the sail's.
+    // The stretched walls of the sail outline; its Y scale mirrors the sail's.
     [SerializeField] Transform sailOutlineWalls;
 
     // The fixed-height cap at the open end of the sail outline.

@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 // Full-screen speed lines drawn with Painter2D.
-// Lines are oriented parallel to the boat's heading and travel backward —
+// Lines are oriented parallel to the boat's heading and travel backward:
 // they spawn ahead of the boat and zip past it in the opposite direction,
 // like motion-blur streaks in a racing game.
 //

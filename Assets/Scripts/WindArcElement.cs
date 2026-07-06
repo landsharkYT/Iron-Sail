@@ -6,13 +6,13 @@ using UnityEngine.UIElements;
 // zones where the boat gets no wind benefit.
 //
 // Rather than drawing a replacement arc, this element renders the sprite
-// texture itself — but only within a filled pie-slice mesh that covers the
+// texture itself, but only within a filled pie-slice mesh that covers the
 // good-wind zone centred at the TOP (12 o'clock / 270° in screen space).
 //
 // Arc angle convention (screen space Y-down):
 //   0° = right (3 o'clock), 90° = down, 180° = left, 270° = up (12 o'clock).
 //
-// ArcDegrees defaults to 180 — matches the current physics model where
+// ArcDegrees defaults to 180, matching the current physics model where
 // efficiency = Dot(boatForward, windDir) drops to zero at 90° off-axis.
 //
 // Set ArcSprite from code (WindUIController.Start) before the first repaint.

@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 //   - wind-arc-layer: rotates to the absolute world wind direction so the green
 //     arc shows the helpful downwind sector, while the orbiting wind icon sits
 //     opposite it to show where the wind comes from.
-//   - compass-ring: never rotates — NESW labels stay fixed in world space.
+//   - compass-ring: never rotates, so NESW labels stay fixed in world space.
 //   - pointer-layer: rotates to the boat's world heading so the arrow always
 //     points in the direction the player is travelling.
 //

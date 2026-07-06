@@ -16,7 +16,7 @@ using UnityEngine.InputSystem;
 //
 // Turn rate:
 //   Scales linearly with current speed so the boat steers sluggishly when slow
-//   and responsively at speed — matching how a real hull behaves in water.
+//   and responsively at speed, matching how a real hull behaves in water.
 [RequireComponent(typeof(Rigidbody2D))]
 public class BoatController : MonoBehaviour
 {
@@ -56,7 +56,7 @@ public class BoatController : MonoBehaviour
 
     [Header("Sail & Wind")]
 
-    // Reference to the sail — used to read current sail state and trigger raise/lower.
+    // Reference to the sail, used to read current sail state and trigger raise/lower.
     [SerializeField] SailController sailController;
 
     // The wind source this boat reads from.

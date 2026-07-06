@@ -8,10 +8,10 @@ using UnityEngine.SceneManagement;
 
 // Orchestrates capturing and restoring a Save File. See ADR 0003.
 //
-// FIRST SLICE: proves the save -> scene-reload -> restore loop over the cheap core
-// (World Seed, boat transform, health, hunger, gold, time of day, weather).
-// Hull wear, inventory items, enemies, markers, met-shopkeepers and the discovered
-// map are later slices and are deliberately not captured yet.
+// Captures the full session: World Seed, boat transform, health, hunger, gold,
+// time of day, weather, inventory items, active enemies, map markers, met
+// shopkeepers, and the discovered-map reveal mask. Hull wear is not stored
+// because it has no independent state (see the note in SaveData).
 //
 // Load works by scene reload: the World Seed must be injected before any scene
 // object Awakes (IslandGenerationController consumes it in Awake), so we set the

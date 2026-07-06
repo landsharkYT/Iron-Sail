@@ -3,7 +3,7 @@ using UnityEngine;
 // A circular sea hazard (see ADR 0005 and the Whirlpool glossary entry). While the
 // boat is inside the trigger it is pulled toward the eye by a logarithmic-spiral
 // force field and takes depth-scaled damage over time. There is no scripted
-// "escape": breaking out is emergent — only near-full wind thrust beats the pull,
+// "escape": breaking out is emergent, since only near-full wind thrust beats the pull,
 // so escape is possible roughly downwind.
 [RequireComponent(typeof(CircleCollider2D))]
 public class WhirlpoolController : MonoBehaviour

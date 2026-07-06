@@ -259,7 +259,7 @@ public class MapDiscoveryController : MonoBehaviour
         ProcessPendingTiles();
 
         // Treasure markers must be stamped after the island stamps that would
-        // otherwise overwrite them as land — i.e. once reconstruction has drained.
+        // otherwise overwrite them as land, i.e. once reconstruction has drained.
         if (maskReconstructionPending
             && pendingMaskReplayBlocks.Count == 0
             && pendingIslandStamps.Count == 0

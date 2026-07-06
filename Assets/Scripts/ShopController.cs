@@ -1254,7 +1254,7 @@ public class ShopController : MonoBehaviour
         bool showMainMenu = !talkModeActive && !sellModeActive && !buyModeActive;
         bool tradeMode = sellModeActive || buyModeActive;
 
-        // During repair confirm the main menu stays visible but Shop/Sell/Talk are hidden —
+        // During repair confirm the main menu stays visible but Shop/Sell/Talk are hidden:
         // Repair becomes the Confirm button and Leave becomes Cancel.
         SetDisplay(shopButton,   showMainMenu && !repairConfirmActive);
         SetDisplay(repairButton, showMainMenu);

@@ -10,9 +10,9 @@ using UnityEngine.InputSystem;
 //   - Side view: used when facing roughly east or west (sideboat prefab).
 //
 // Additionally, when facing south the top-down sprites need two corrections:
-//   1. Texture flip (flipY) — mirrors the sprite around its own pivot so the
+//   1. Texture flip (flipY): mirrors the sprite around its own pivot so the
 //      artwork appears correctly oriented without moving the object.
-//   2. Position flip (negate local Y) — moves mast/sail to the correct end of
+//   2. Position flip (negate local Y): moves mast/sail to the correct end of
 //      the hull, since the boat's rotation alone would leave them on the wrong side.
 //
 // When facing north, the mast and mast outline are raised above the sail in
@@ -63,7 +63,7 @@ public class BoatVisualController : MonoBehaviour
     [Header("North/South")]
 
     // Sprites that receive a vertical texture flip (flipY) when facing south.
-    // flipY mirrors the texture around the sprite's own pivot — no position change.
+    // flipY mirrors the texture around the sprite's own pivot, no position change.
     [SerializeField] SpriteRenderer[] southFlipRenderers;
 
     // Transforms whose local Y position is negated when facing south.
@@ -104,9 +104,9 @@ public class BoatVisualController : MonoBehaviour
 
     // Max extra degrees the visual rotates past the true angle during a turn.
     [SerializeField] float overshootAmount  = 3f;
-    // Spring constant — higher = snappier return to true angle.
+    // Spring constant: higher = snappier return to true angle.
     [SerializeField] float overshootSpring  = 40f;
-    // Damping constant — higher = less oscillation after overshoot.
+    // Damping constant: higher = less oscillation after overshoot.
     [SerializeField] float overshootDamping = 6f;
 
     // Transforms that shift sideways together during a turn (Sail + SailOutlineWalls).
@@ -124,7 +124,7 @@ public class BoatVisualController : MonoBehaviour
     // How fast the side sail shift eases in and out each second.
     [SerializeField] float sideSailShiftSpeed  = 6f;
 
-    // Cached at runtime — avoids repeated GetComponent calls each frame.
+    // Cached at runtime; avoids repeated GetComponent calls each frame.
     SpriteRenderer[] mainRenderers;
     SpriteRenderer[] sideboatRenderers;
 
@@ -239,7 +239,7 @@ public class BoatVisualController : MonoBehaviour
     {
         float angle = transform.eulerAngles.z;
 
-        // Read turn input once — shared by all three turn effects below.
+        // Read turn input once, shared by all three turn effects below.
         float turnInput = 0f;
         var kb = Keyboard.current;
         if (kb != null)
@@ -393,7 +393,7 @@ public class BoatVisualController : MonoBehaviour
         // --- Turn effect: overshoot rotation ---
         // A damped spring drives currentOvershootAngle toward (turnInput * overshootAmount).
         // When the player releases the key the target snaps to 0, the spring overshoots,
-        // then damps out — giving the visual a physical momentum feel without moving
+        // then damps out, giving the visual a physical momentum feel without moving
         // the true rotation that all direction logic reads from.
         float targetOvershoot = turnInput * overshootAmount;
         overshootVelocity += (targetOvershoot - currentOvershootAngle) * overshootSpring * Time.deltaTime;
@@ -405,7 +405,7 @@ public class BoatVisualController : MonoBehaviour
         // --- Turn effect: sail shift (top-down) ---
         // Sail and SailOutlineWalls nudge sideways together so the outline never drifts
         // from the sail. Runs after southYFlipTransforms so only localPosition.x is
-        // changed here — the Y set by the south-flip logic is preserved.
+        // changed here; the Y set by the south-flip logic is preserved.
         float targetSailShift = turnInput * sailShiftAmount;
         currentSailShift = Mathf.MoveTowards(currentSailShift, targetSailShift, sailShiftSpeed * Time.deltaTime);
         if (sailShiftTransforms != null)
